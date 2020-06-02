@@ -6,13 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <title>Orinoco|Accueil</title>
 
     <!-- CSS -->
-
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -20,111 +18,129 @@
 
     <!-- Header -->
     <header>
-        <nav>
-            <div class="bord">
-                <h1>ORINOCO</h1>
-                <button>
-                    <span></span>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand">ORINOCO</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="bord">
-                    <ul>
-                        <li><a href="">À propos</a></li>
-                        <li><a href="">Services</a></li>
-                        <li><a href="">Contact</a></li>
-                        <li><a href="cart.html">Votre panier</a></li>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">À propos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+    <!-- Header END-->
 
-    <!-- Page Content -->
-    <main>
-        <div>
-            <div>
+    <!-- Content -->
+    <main class="container">
 
-                <!-- Carousel -->
-                <div class="bord">
+        <!-- Jumbotron -->
+        <div class="jumbotron my-4">
+            <h1 class="display-3">OricamV</h1>
+            <p class="lead">Si vous aimez la qualité des photographies produites par ces appareils photo vintage classiques et leurs accessoires ou si vous êtes fasciné par l'histoire derrière ces anciens appareils photo argentiques. Ces produits sont fait pour vous !</p>
+            <a href="#" class="btn btn-primary btn-lg">Notre collection</a>
+        </div>
 
-                </div>
-                <div>
-                    <div class="bord">
-                        <div>
-                            <a href="#"><img src="" alt=""></a>
-                            <div>
-                                <h4>
-                                    <a href="">Produit 1</a>
-                                </h4>
-                                <h5>Prix 1</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!
-                                </p>
-                            </div>
-                            <a href="product.html" class="stretched-link">Voir le produit</a>
-                        </div>
+        <!-- Products 1 -->
+        <div class="row text-center">
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                    <img class="card-img-top" src="images/vcam_1.jpg" alt="Appareil photo Zeiss Ikon">
+                    <div class="card-body">
+                        <h4 class="card-title">Zeiss Ikon Contina</h4>
+                        <h5>90€</h5>
+                        <p class="card-text">A été produit entre 1962-1965. Poids env. 500 grammes. Numéro de série F 9173 sur le dos. Livraison avec un sac en cuir breveté.</p>
                     </div>
-                    <div class="bord">
-                        <div>
-                            <a href="#"><img src="" alt=""></a>
-                            <div>
-                                <h4>
-                                    <a href="">Produit 2</a>
-                                </h4>
-                                <h5>Prix 2</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bord">
-                        <div>
-                            <a href="#"><img src="" alt=""></a>
-                            <div>
-                                <h4>
-                                    <a href="">Produit 3</a>
-                                </h4>
-                                <h5>Prix 3</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bord">
-                        <div>
-                            <a href="#"><img src="" alt=""></a>
-                            <div>
-                                <h4>
-                                    <a href="">Produit 4</a>
-                                </h4>
-                                <h5>Prix 4</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bord">
-                        <div>
-                            <a href="#"><img src="" alt=""></a>
-                            <div>
-                                <h4>
-                                    <a href="">Produit 5</a>
-                                </h4>
-                                <h5>Prix 5</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!
-                                </p>
-                            </div>
-                        </div>
+                    <div class="card-footer">
+                        <a href="product.html" class="btn btn-primary">En savoir plus!</a>
                     </div>
                 </div>
             </div>
-        <div>    
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                    <img class="card-img-top" src="images/vcam_2.jpg" alt="Filtre polarisant">
+                    <div class="card-body">
+                        <h4 class="card-title">Filtre polarisant</h4>
+                        <h5>55€</h5>
+                        <p class="card-text">Ce filtre polarisant contrôle les reflets sur le verre, l'eau, les feuilles et le ciel. Améliore le contraste...</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary">En savoir plus!</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                    <img class="card-img-top" src="images/vcam_3.jpg" alt="Appareil photo Eastman Kodak Pocket">
+                    <div class="card-body">
+                        <h4 class="card-title">Eastman Kodak Pocket, n°1</h4>
+                        <h5>100€</h5>
+                        <p class="card-text">Le n°1 Kodak Pocket est un appareil photo grand format pour lit pliant fabriqué par Eastman Kodak et produit entre 1926 et 1932...</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary">En savoir plus!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Products 1 END -->
+
+        <!-- Products 2 -->
+        <div class="row text-center">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                    <img class="card-img-top" src="images/vcam_4.jpg" alt="Objectif Minolta MD">
+                    <div class="card-body">
+                        <h4 class="card-title">Objectif Minolta MD</h4>
+                        <h5>70€</h5>
+                        <p class="card-text">L'un des verres les plus courants de chez Minolta. Absolument merveilleux ce cinquante millimètre qui ne vous décevra jamais...</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary">En savoir plus!</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                    <img class="card-img-top" src="images/vcam_5.jpg" alt="Objectif Sears Auto EE">
+                    <div class="card-body">
+                        <h4 class="card-title">Objectif Sears Auto</h4>
+                        <h5>55€</h5>
+                        <p class="card-text">L'objectif standard de chez Sears, assez performant dans sa catégorie...</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary">En savoir plus!</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4"></div>
+        <!-- Products 2 END -->
+
     </main>
+    <!-- Container END -->
 
     <!-- Footer -->
-    <footer class="bord">
-        <div>
-            <p>Copyright &copy; ORINOCO 2020</p>
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Orinoco 2020</p>
         </div>
     </footer>
+    <!-- Footer END -->
 
     <!-- JavaScript : jQuery - Popper.js - Bootstrap JS -->
 
