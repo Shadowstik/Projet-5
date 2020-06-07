@@ -2,7 +2,8 @@
 body{
     padding-top: 100px;
 }
-.bord{
-    border: solid 2px black;
+
+.container {
+    max-width: 900px;
 }
 
