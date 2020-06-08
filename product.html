@@ -15,7 +15,7 @@
 
     <!-- Header -->
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top bord-h">
             <div class="container">
                 <a class="navbar-brand" href="index.html"><img src="images/logo-ori.png" alt="logo Orinoco"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -23,11 +23,9 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Accueil
-                                <span class="sr-only">(current)</span>
-                            </a>
+                    <ul class="navbar-nav ml-auto h5">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Accueil</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">À propos</a>
@@ -48,9 +46,9 @@
     </header>
     <!-- Header END-->
 
-    <!-- Page Content -->
-    <main class="container">
-        <h1 class="text-center">Zeiss Ikon Contina</h1>
+    <!-- Product -->
+    <main class="container mt-4">
+        <h1 class="text-center text-primary">Zeiss Ikon Contina</h1>
         <div class="card mt-4">
             <img class="card-img-top img-fluid" src="images/vcam_1-xl.jpg" alt="Appareil photo Zeiss Ikon Contina">
             <div class="card-body">
@@ -58,15 +56,15 @@
                 <h4>90€</h4>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                      <label class="input-group-text" for="inputGroupSelect01">Options de lentilles</label>
+                        <label class="input-group-text h6" for="inputGroupSelect01">Options de lentilles</label>
                     </div>
                     <select class="custom-select" id="inputGroupSelect01">
-                      <option selected>Choisissez un modèle...</option>
-                      <option value="lens-1">Lentitille A - 85€</option>
-                      <option value="lens-2">Lentitille B - 75€</option>
-                      <option value="lens-3">Lentitille C - 70€</option>
+                        <option selected>Choisissez un modèle...</option>
+                        <option value="lens-1">Lentitille A - 85€</option>
+                        <option value="lens-2">Lentitille B - 75€</option>
+                        <option value="lens-3">Lentitille C - 70€</option>
                     </select>
-                  </div>
+                </div>
                 <p class="card-text">Appareil photo Zeiss Ikon Contina pour film 35 mm avec objectif Color Pantar 45 mm
                     f 2,8. A été produit entre 1962 et 1965. Poids env. 500 grammes. Numéro de série F 9173 au dos.
                     Livraison avec un sac en cuir exclusif.</p>
@@ -74,10 +72,11 @@
                 4.0 étoiles
             </div>
         </div>
-        <!-- /.card -->
+        <!-- Product END -->
 
+        <!-- Reviews -->
         <div class="card card-outline-secondary my-4">
-            <div class="card-header">
+            <div class="card-header h6">
                 Évaluations du produit
             </div>
             <div class="card-body">
@@ -94,22 +93,15 @@
                     est amoureuse!</p>
                 <small class="text-muted">Postée par Franck le 3/1/2020</small>
                 <hr>
-                <a href="#" class="btn btn-success">Laisser une évaluation</a>
+                <a href="#" class="btn btn-primary">Laisser une évaluation</a>
             </div>
         </div>
-        <!-- /.card -->
-
-
-
-
-
+        <!-- Reviews END -->
     </main>
 
     <!-- Footer -->
-    <footer class="py-5 bg-dark">
-        <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Orinoco 2020</p>
-        </div>
+    <footer class="py-5 bg-dark bord-f">
+        <p class="m-0 text-center">Copyright &copy; Orinoco 2020</p>
     </footer>
     <!-- Footer END -->
 
