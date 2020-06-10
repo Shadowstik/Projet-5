@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-    <title>Orinoco|Produit</title>
+    <title>Orinoco | Produit</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
@@ -52,19 +52,25 @@
         <div class="card mt-4">
             <img class="card-img-top img-fluid" src="images/vcam_1-xl.jpg" alt="Appareil photo Zeiss Ikon Contina">
             <div class="card-body">
-                <h3 class="card-title">Zeiss Ikon Contina</h3>
-                <h4>90€</h4>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <label class="input-group-text h6" for="inputGroupSelect01">Options de lentilles</label>
+                <h2 class="card-title">Zeiss Ikon Contina</h2>
+                <p class="h4">90€</p>
+                <div class="row">
+                    <div class="input-group mb-3 col-8">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text h6" for="inputGroupSelect01">Options de lentilles</label>
+                        </div>
+                        <select class="custom-select" id="inputGroupSelect01">
+                            <option selected>Choisissez un modèle...</option>
+                            <option value="lens-1">Lentitille A - 85€</option>
+                            <option value="lens-2">Lentitille B - 75€</option>
+                            <option value="lens-3">Lentitille C - 70€</option>
+                        </select>
                     </div>
-                    <select class="custom-select" id="inputGroupSelect01">
-                        <option selected>Choisissez un modèle...</option>
-                        <option value="lens-1">Lentitille A - 85€</option>
-                        <option value="lens-2">Lentitille B - 75€</option>
-                        <option value="lens-3">Lentitille C - 70€</option>
-                    </select>
+                    <div class="col-4">
+                        <div class="btn btn-primary">Ajouter au panier</div>
+                    </div>
                 </div>
+                
                 <p class="card-text">Appareil photo Zeiss Ikon Contina pour film 35 mm avec objectif Color Pantar 45 mm
                     f 2,8. A été produit entre 1962 et 1965. Poids env. 500 grammes. Numéro de série F 9173 au dos.
                     Livraison avec un sac en cuir exclusif.</p>
@@ -76,9 +82,7 @@
 
         <!-- Reviews -->
         <div class="card card-outline-secondary my-4">
-            <div class="card-header h6">
-                Évaluations du produit
-            </div>
+            <h2 class="card-header h5">Évaluations du produit</h2>    
             <div class="card-body">
                 <p>Incroyable! C'est l'un de mes premiers appareils photo vintage que j'ai acheté. J'ai adoré
                     l'utilisation, cet appareil photo est vraiment cool.</p>
