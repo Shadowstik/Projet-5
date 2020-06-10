@@ -16,6 +16,7 @@ $blue:    #007bff !default;
 $indigo:  #6610f2 !default;
 $purple:  #6f42c1 !default;
 $pink:    #e83e8c !default;
+$light-purple: #F3E9F1 !default;
 $red:     #dc3545 !default;
 $orange:  #fd7e14 !default;
 $yellow:  #ffc107 !default;
@@ -30,7 +31,7 @@ $info:          $cyan !default;
 $warning:       $yellow !default;
 $danger:        $red !default;
 $light:         $gray-100 !default;
-$dark:          $gray-800 !default;
+$dark:          $light-purple !default;
 
 $body-color:                        $black !default;
 
@@ -42,7 +43,7 @@ $navbar-dark-toggler-icon-bg:       url("data:image/svg+xml,<svg xmlns='http://w
 $navbar-dark-toggler-border-color:  $black !default;
 
 // Jumbotron color
-$jumbotron-bg:                      $gray-800 !default;
+$jumbotron-bg:                      $light-purple !default;
 
 // Body form
 body{
