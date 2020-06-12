@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <title>Orinoco | Caméra - Kuros TTS</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top bord-h">
+            <div class="container">
+                <a class="navbar-brand" href="index.html"><img src="images/logo-ori.png" alt="logo Orinoco"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto h5">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="cart.html">Votre panier <span class="badge badge-primary badge-pill">0</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Header END-->
+
+    <!-- Product -->
+    <main class="container mt-4">
+        <h1 class="text-center text-primary">Kuros TTS</h1>
+        <div class="card mt-4">
+            <img class="card-img-top img-fluid" src="images/vcam_4.jpg" alt="Caméra Kuros TTS">
+            <div class="card-body">
+                <h2 class="card-title">Kuros TTS</h2>
+                <p class="h5">1599€</p>
+                <div class="row">
+                    <div class="input-group mb-3 col-12 col-sm-6">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text h6" for="lenses">Options de lentilles</label>
+                        </div>
+                        <select class="custom-select" id="lenses">
+                            <option selected>Choisissez un modèle...</option>
+                            <option value="lens-1">50mm 1.7</option>
+                            <option value="lens-2">35mm 1.4</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3 col-12 col-sm-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text h6" for="quantity">Quantité</label>
+                        </div>
+                        <input type="number" min="1" max="10" value="1" name="product_qty" id="quantity"
+                            class="form-control" placeholder="Quantité" aria-label="Quantité"
+                            aria-describedby="quantity">
+                    </div>
+                    <div class="col-12 col-sm-3">
+                        <div class="btn btn-primary">Ajouter au panier</div>
+                    </div>
+                </div>
+
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                4.0 étoiles
+            </div>
+        </div>
+        <!-- Product END -->
+
+        <!-- Reviews -->
+        <div class="card card-outline-secondary my-4">
+            <h2 class="card-header h5">Évaluations du produit</h2>
+            <div class="card-body">
+                <p>Incroyable! C'est l'un de mes premiers appareils photo vintage que j'ai acheté. J'ai adoré
+                    l'utilisation, cet appareil photo est vraiment cool.</p>
+                <small class="text-muted">Postée par Victor le 6/4/2020</small>
+                <hr>
+                <p>Mon partenaire a adoré ce cadeau !!!! Nous l'avons emmené à Amsterdam et c'était amusant de jouer
+                    avec. Certainement difficile à utiliser et à évaluer, nous avons donc dépensé plus d'argent pour le
+                    comprendre. Mais très cool !!</p>
+                <small class="text-muted">Postée par Anaël le 23/2/2020</small>
+                <hr>
+                <p>Une touche géniale sur un appareil photo classique, c'était un cadeau pour ma petite amie et elle en
+                    est amoureuse!</p>
+                <small class="text-muted">Postée par Franck le 3/1/2020</small>
+                <hr>
+                <a href="#" class="btn btn-primary">Laisser une évaluation</a>
+            </div>
+        </div>
+        <!-- Reviews END -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark bord-f">
+        <p class="m-0 text-center">Copyright &copy; Orinoco 2020</p>
+    </footer>
+    <!-- Footer END -->
+
+    <!-- JavaScript : jQuery - Popper.js - Bootstrap JS -->
+    <script src="node_modules/bootstrap/js/dist/jquery-3.5.1.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
