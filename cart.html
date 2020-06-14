@@ -9,6 +9,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
+
 </head>
 
 <body>
@@ -50,6 +51,17 @@
                 <h2 class="text-primary h3">Votre panier</h2>
                 <span class="badge badge-primary badge-pill">0</span>
             </div>
+            <table class="table text-secondary">
+                <thead>
+                    <tr>
+                        <th>Article</th>
+                        <th>Prix</th>
+                        <th>Quantité</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-tablebody"></tbody>
+            </table>
+            <p>Sous total : <span class="subtotal"></span>€</p>
             <p class="alert alert-warning">Votre panier est vide</p>
         </div>
         <div class="col-md-10 mx-auto">
@@ -112,71 +124,6 @@
                     </div>
                 </div>
                 <hr class="mb-4">
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="same-address">
-                    <label class="custom-control-label" for="same-address">L'adresse de livraison est la même que
-                        mon adresse de facturation</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="save-info">
-                    <label class="custom-control-label" for="save-info">Conserver ces informations pour la prochaine
-                        fois.</label>
-                </div>
-                <hr class="mb-4">
-
-                <h2 class="mb-3 text-primary h3">Paiement</h2>
-
-                <div class="d-block my-3">
-                    <div class="custom-control custom-radio">
-                        <input id="visa" name="paymentMethod" type="radio" class="custom-control-input" checked
-                            required>
-                        <label class="custom-control-label" for="visa">Visa</label>
-                    </div>
-                    <div class="custom-control custom-radio">
-                        <input id="Mastercard" name="paymentMethod" type="radio" class="custom-control-input" required>
-                        <label class="custom-control-label" for="Mastercard">Mastercard</label>
-                    </div>
-                    <div class="custom-control custom-radio">
-                        <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-                        <label class="custom-control-label" for="paypal">Paypal</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="cb-name">Nom sur la carte</label>
-                        <input type="text" class="form-control" id="cb-name" placeholder="Entrez le nom sur la carte"
-                            required>
-                        <small class="text-muted">Nom complet tel qu'il figure sur la carte</small>
-                        <div class="invalid-feedback">
-                            Le nom sur la carte est requis.
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="cc-number">Numéro de la carte</label>
-                        <input type="text" class="form-control" id="cc-number"
-                            placeholder="Entrez le numéro sur la carte" required>
-                        <div class="invalid-feedback">
-                            Le numéro de carte est requis.
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6 col-sm-4 mb-3">
-                        <label for="cb-expiration">Date d'expiration</label>
-                        <input type="text" class="form-control" id="cb-expiration" placeholder="--/--" required>
-                        <div class="invalid-feedback">
-                            La date d'expiration est requis.
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-4 mb-3">
-                        <label for="cc-expiration">CVV</label>
-                        <input type="text" class="form-control" id="cc-cvv" placeholder="---" required>
-                        <div class="invalid-feedback">
-                            Code de sécurité requis.
-                        </div>
-                    </div>
-                </div>
-                <hr class="mb-4">
                 <a href="validate.html" class="btn btn-primary btn-lg btn-block" type="submit">Valider la
                     commande</a>
             </form>
@@ -190,7 +137,7 @@
 
     </footer>
     <!-- Footer END -->
-
+    <script src="cart.js"></script>
     <!-- JavaScript : jQuery - Popper.js - Bootstrap JS -->
     <script src="node_modules/bootstrap/js/dist/jquery-3.5.1.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>

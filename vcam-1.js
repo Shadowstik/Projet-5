@@ -1,4 +1,3 @@
-
 function addCart() {
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
@@ -12,5 +11,5 @@ function addCart() {
     request.send();
 };
 
-
-
+var getCart = document.getElementById("cart-tablebody");
+var rowEltCart = document.createA
