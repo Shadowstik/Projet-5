@@ -59,15 +59,9 @@
                         <th>Quantité</th>
                     </tr>
                 </thead>
-                <tbody id="cart-tablebody">
-                    <tr>
-                        <td></td>
-                        <td class="price"></td>
-                    </tr>
-                    
-                </tbody>
+                <tbody id="cart-tablebody"></tbody>
             </table>
-            <p>Sous total : <span class="subtotal"></span>€</p>
+            <p class="subtotal">Sous-total: <span>0</span> €</p>
             <p class="alert alert-warning">Votre panier est vide</p>
         </div>
         <div class="col-md-10 mx-auto">
@@ -106,13 +100,6 @@
                         Entrez une adresse valide d'expédition.
                     </div>
                 </div>
-
-                <div class="mb-3">
-                    <label for="address2">Adresse de facturation<span class="text-muted"> (Facultatif si il est
-                            identique à l'dresse)</span></label>
-                    <input type="text" class="form-control" id="address2" placeholder="Appartement ou suite">
-                </div>
-
                 <div class="row">
                     <div class="col-6 col-sm-4 mb-3">
                         <label for="country">Ville</label>
@@ -143,6 +130,7 @@
 
     </footer>
     <!-- Footer END -->
+    
     <script src="cart.js"></script>
     <!-- JavaScript : jQuery - Popper.js - Bootstrap JS -->
     <script src="node_modules/bootstrap/js/dist/jquery-3.5.1.min.js"></script>

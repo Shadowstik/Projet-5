@@ -1,65 +1,116 @@
-var request = new XMLHttpRequest();
-request.onreadystatechange = function() {
-    if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-        var response = JSON.parse(this.responseText);
-        console.log(response);
 
-        // récupération de infos de la première vcam
-        var vcam = response[0];
-        console.log(vcam);
-        var imageVcam = vcam.imageUrl;
-        console.log(imageVcam);
-        var idVcam = vcam._id;
-        console.log(idVcam);
-        var nameVcam = vcam.name;
-        console.log(nameVcam);
-        var priceVcam = vcam.price/=100;
-        console.log(priceVcam);
-        var descriptionVcam = vcam.description;
-        console.log(descriptionVcam);
+//function addToCart() {
+    const request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+            const response = JSON.parse(this.responseText);
+            console.log(response);
 
-        // Affichage des résultats
+            // récupération de infos de la première vcam
+            const vcam = response[0];
+            const imageVcam = vcam.imageUrl;
+            const idVcam = vcam._id;
+            const nameVcam = vcam.name;
+            const priceVcam = vcam.price /= 100;
+            const descriptionVcam = vcam.description;
+            const quantityVcam = 1;
 
-        // creation de la ligne panier
-        var rowCart = document.createElement("tr");
-        
-        var colProduct = document.createElement("td");
-        colProduct.setAttribute("class", "product");
-        rowCart.appendChild(colProduct);
+            // Affichage des résultats
 
-        var colPrice = document.createElement("td");
-        colPrice.setAttribute("class", "price");
-        rowCart.appendChild(colPrice);
+            // creation de la ligne panier
+            const rowCart = document.createElement("tr");
+            const cart = document.getElementById("cart-tablebody");
+            cart.appendChild(rowCart);
 
-        var colQuantity = document.createElement("td");
-        colQuantity .setAttribute("class", "quantity");
-        rowCart.appendChild(colQuantity);
+            // création de la colonne produit
+            const colProduct = document.createElement("td");
+            colProduct.setAttribute("class", "product");
+            console.log(colProduct);
+            rowCart.appendChild(colProduct);
 
-        console.log(rowCart);
+            // création de la colonne prix
+            const colPrice = document.createElement("td");
+            colPrice.setAttribute("class", "price");
+            rowCart.appendChild(colPrice);
 
-        var imageElt = document.createElement("img");
-        imageElt.src = imageVcam;
-        imageElt.setAttribute("width", "100px");
-        var rowCart1 = document.getElementsByClassName("product");
-        rowCart1.appendChild(imageElt);
+            // création de la colonne quantité
+            const colQuantity = document.createElement("td");
+            colQuantity.setAttribute("class", "quantity");
+            rowCart.appendChild(colQuantity);
 
-        var nameElt = document.createElement("span");
-        nameElt.innerHTML = nameVcam;
-        var rowCart2 = document.querySelector("#cart-tablebody tr > td.product");
-        rowCart2.appendChild(nameElt);
+            // Ajout donnée colonne produit => image
+            /*var imageElt = document.createElement("img");
+            imageElt.src = imageVcam;
+            imageElt.setAttribute("width", "100px"); 
+            colProduct.innerHTML += imageElt;
+            console.log(colProduct);*/
 
-        var priceElt = document.createElement("span");
-        priceElt.innerHTML = priceVcam;
-        var rowCart3 = document.querySelector("#cart-tablebody tr > td.price");
-        rowCart3.appendChild(priceElt);
+            // Ajout donnée colonne produit => name
+            const nameElt = nameVcam;
+            colProduct.textContent = nameElt;
 
-        // retire le message du panier vide
-        var removeAlert = document.querySelector("p.alert");
-        console.log(removeAlert);
-        removeAlert.innerHTML = "";
-        removeAlert.classList.remove("alert");
+            // Ajout donnée colonne prix => price
+            const priceElt = priceVcam;
+            colPrice.textContent = priceElt + "€";
+
+            const quantityElt = quantityVcam;
+            colQuantity.textContent = quantityElt;
+
+            // Ajout donnée subtotal
+            const subTotalElt = document.querySelector("p.subtotal span");
+            const subtotal = priceVcam * quantityVcam;
+            subTotalElt.textContent = subtotal;
+
+            // retire le message du panier vide
+            const removeAlert = document.querySelector("p.alert");
+            removeAlert.innerHTML = "";
+            removeAlert.classList.remove("alert");
+        }
+    };
+
+    request.open("GET", "http://localhost:3000/api/cameras");
+    request.send();
+//};
+
+//export {addToCart};
+
+
+// validation formulaire
+
+const firstName = document.getElementById("firstName");
+firstName.addEventListener("onchange", function(e) {
+    let value = e.target.value;
+    if (value === String) {
+        isValid = true;
+    } else {
+        isValid = false;
+    })
+    function isValid(value) {
+        return /[A-Z]/.test(value);
     }
-};
+});
 
-request.open("GET", "http://localhost:3000/api/cameras");
-request.send();
+const lastName = document.getElementById("lastName");
+lastName.addEventListener("onchange", function(e) {
+
+});
+
+const email = document.getElementById("email");
+email.addEventListener("onchange", function(e) {
+
+});
+
+const address = document.getElementById("address");
+address.addEventListener("onchange", function(e) {
+
+});
+
+const country = document.getElementById("country");
+country.addEventListener("onchange", function(e) {
+
+});
+
+const postalCode = document.getElementById("cp");
+postalCode.addEventListener("onchange", function(e) {
+
+});
