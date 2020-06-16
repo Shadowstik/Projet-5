@@ -4,7 +4,6 @@
     request.onreadystatechange = function () {
         if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
             const response = JSON.parse(this.responseText);
-            console.log(response);
 
             // récupération de infos de la première vcam
             const vcam = response[0];
@@ -18,51 +17,51 @@
             // Affichage des résultats
 
             // creation de la ligne panier
-            const rowCart = document.createElement("tr");
-            const cart = document.getElementById("cart-tablebody");
+            let rowCart = document.createElement("tr");
+            let cart = document.getElementById("cart-tablebody");
             cart.appendChild(rowCart);
 
             // création de la colonne produit
-            const colProduct = document.createElement("td");
+            let colProduct = document.createElement("td");
             colProduct.setAttribute("class", "product");
-            console.log(colProduct);
             rowCart.appendChild(colProduct);
 
             // création de la colonne prix
-            const colPrice = document.createElement("td");
+            let colPrice = document.createElement("td");
             colPrice.setAttribute("class", "price");
             rowCart.appendChild(colPrice);
 
             // création de la colonne quantité
-            const colQuantity = document.createElement("td");
+            let colQuantity = document.createElement("td");
             colQuantity.setAttribute("class", "quantity");
             rowCart.appendChild(colQuantity);
 
             // Ajout donnée colonne produit => image
-            /*var imageElt = document.createElement("img");
+            /*let imageElt = document.createElement("img");
             imageElt.src = imageVcam;
             imageElt.setAttribute("width", "100px"); 
-            colProduct.innerHTML += imageElt;
+            colProduct.innerHTML = imageElt;
+            console.log(imageElt);
             console.log(colProduct);*/
 
             // Ajout donnée colonne produit => name
-            const nameElt = nameVcam;
+            let nameElt = nameVcam;
             colProduct.textContent = nameElt;
 
             // Ajout donnée colonne prix => price
-            const priceElt = priceVcam;
+            let priceElt = priceVcam;
             colPrice.textContent = priceElt + "€";
 
-            const quantityElt = quantityVcam;
+            let quantityElt = quantityVcam;
             colQuantity.textContent = quantityElt;
 
             // Ajout donnée subtotal
-            const subTotalElt = document.querySelector("p.subtotal span");
+            let subTotalElt = document.querySelector("p.subtotal span");
             const subtotal = priceVcam * quantityVcam;
             subTotalElt.textContent = subtotal;
 
             // retire le message du panier vide
-            const removeAlert = document.querySelector("p.alert");
+            let removeAlert = document.querySelector("p.alert");
             removeAlert.innerHTML = "";
             removeAlert.classList.remove("alert");
         }
@@ -77,17 +76,9 @@
 
 // validation formulaire
 
-const firstName = document.getElementById("firstName");
+/*const firstName = document.getElementById("firstName");
 firstName.addEventListener("onchange", function(e) {
-    let value = e.target.value;
-    if (value === String) {
-        isValid = true;
-    } else {
-        isValid = false;
-    })
-    function isValid(value) {
-        return /[A-Z]/.test(value);
-    }
+    
 });
 
 const lastName = document.getElementById("lastName");
@@ -105,7 +96,7 @@ address.addEventListener("onchange", function(e) {
 
 });
 
-const country = document.getElementById("country");
+const city = document.getElementById("city");
 country.addEventListener("onchange", function(e) {
 
 });
@@ -113,4 +104,4 @@ country.addEventListener("onchange", function(e) {
 const postalCode = document.getElementById("cp");
 postalCode.addEventListener("onchange", function(e) {
 
-});
+});*/
