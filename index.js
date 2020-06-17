@@ -8,7 +8,6 @@ request.onreadystatechange = function () {
         let response = JSON.parse(this.responseText);
 
         const products = document.getElementById("all-products");
-        console.log(products);
 
         for (let i = 0; i < response.length; i++) {
 
