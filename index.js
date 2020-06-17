@@ -1,5 +1,6 @@
 
 
+// requête des données de l'api
 
 const request = new XMLHttpRequest();
 request.onreadystatechange = function () {
