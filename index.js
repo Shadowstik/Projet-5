@@ -1,82 +1,32 @@
-// requête des données de l'api
-
-const request = new XMLHttpRequest();
-request.onreadystatechange = function () {
-    if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-        let response = JSON.parse(this.responseText);
-
-        const products = document.getElementById("all-products");
-
-        for (let i = 0; i < response.length; i++) {
-
-            const idProduct = response[i]._id;
-            const nameProduct = response[i].name;
-            const imageProduct = response[i].imageUrl;
-            const resumeProduct = response[i].description;
-            const priceProduct = response[i].price / 100;
+const teddyAppend = document.getElementById("mainPage"); // important pour le l'ID du main !!!
 
 
-            // création de la structure de la fiche produit
+async function getTeddies() { // créer une fonstion asinchrone
+    response = await fetch("http://localhost:3000/api/teddies"); // la réponse attent  le retour du serveur
+    data = await response.json() // data est égale à la réponse en json
+    return data; // la réponse du data
+}
+getTeddies().then(function (data) {
+    data.forEach((teddy) => {
+        const { name, _id, colors, price, description, imageUrl } = teddy      // Déclaration de teddy comme objet
+        teddyAppend.innerHTML +=
 
-            const cardBox = document.createElement("div");
-            cardBox.setAttribute("class", "col-lg-4 col-md-6 mb-4");
-            products.appendChild(cardBox);
-            console.log(products);
 
-            const cardContent = document.createElement("div");
-            cardContent.setAttribute("class", "card h-100");
-            cardBox.appendChild(cardContent);
-            console.log(cardBox);
+            `<div class="${name}">
+	                <img src="${imageUrl}" alt="Photo de ${name}" class="teddyPhoto"></img>
+	                <div class="teddyInfo">
+	                <h3 class="teddyName">${name}</h3>
+	                <p id="price">Prix: ${price / 100}€</p>
+	                </div>
+	                <button onclick='location.href="produit.html?id=${_id}"' type="button" id="btnCustom">Personnaliser mon teddy</button>
+	            </div>`;     // Inportant !!! récuperer les ID pour la page d'apres.
 
-            // création de l'image
 
-            const cardImage = document.createElement("img");
-            cardImage.setAttribute("class", "card-img-top");
-            cardImage.setAttribute("src", imageProduct);
-            cardImage.setAttribute("alt", nameProduct);
-            cardContent.appendChild(cardImage);
-            console.log(cardImage);
+        //console.log(imageUrl);
 
-            const cardBody = document.createElement("div");
-            cardBody.setAttribute("class", "card-body");
-            cardBody.nextElementSibling;
-            cardContent.appendChild(cardBody);
 
-            // création du titre
+    });
 
-            const cardTitle = document.createElement("h2");
-            cardTitle.setAttribute("class", "card-title h4");
-            cardTitle.innerHTML = nameProduct;
-            cardBody.appendChild(cardTitle);
 
-            // création du prix
+});
 
-            const cardPrice = document.createElement("p");
-            cardPrice.setAttribute("class", "price h4");
-            cardPrice.innerHTML = priceProduct + " " + "€";
-            cardBody.appendChild(cardPrice);
-
-            // création de la description
-
-            const cardText = document.createElement("p");
-            cardText.setAttribute("class", "card-text");
-            cardText.innerHTML = resumeProduct;
-            cardBody.appendChild(cardText);
-
-            // création du bouton
-
-            const cardFooter = document.createElement("div");
-            cardFooter.setAttribute("class", "card-footer");
-            cardContent.appendChild(cardFooter);
-
-            const productLink = document.createElement("a");
-            productLink.setAttribute("href", "product.html?id=" + idProduct);
-            console.log(productLink);
-            productLink.setAttribute("class", "btn btn-primary");
-            productLink.textContent = "Voir le produit !";
-            cardFooter.appendChild(productLink);
-        };
-    }
-};
-request.open("GET", "http://localhost:3000/api/cameras/");
-request.send();
