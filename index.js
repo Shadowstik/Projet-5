@@ -1,5 +1,3 @@
-
-
 // requête des données de l'api
 
 const request = new XMLHttpRequest();
@@ -80,9 +78,5 @@ request.onreadystatechange = function () {
         };
     }
 };
-request.open("GET", "http://localhost:3000/api/cameras");
+request.open("GET", "http://localhost:3000/api/cameras/");
 request.send();
-
-
-
-

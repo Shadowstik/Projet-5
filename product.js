@@ -1,40 +1,48 @@
-/* const optionProduct = response[i].lenses;
-*/
 
-// insertion titre du produit
 
-const titleProduct = document.getElementById("main-title");
-titleProduct.textContent = "nameProduct";
+// récupération de l'id du produit passé dans l'url
 
-// insertion image du produit
+const getIdQuery = window.location.search;
+const urlParams = new UrlSearchParams(getIdQuery);
+const id = urlParams.get("id");
 
-const imageProduct = document.getElementById("img-product");
-imageProduct.setAttribute("src", "imageProduct");
-imageProduct.setAttribute("alt", "nameProduct");
 
-// insertion nom du produit
+const getProduct = () => {
 
-const nameProduct = document.getElementsByClassName("card-title");
-titleProduct.textContent = "nameProduct";
+    // insertion titre du produit
 
-// insertion prix du produit
+    const titleProduct = document.getElementById("main-title");
+    titleProduct.textContent = "nameProduct";
 
-const priceProduct = document.getElementById("price");
-priceProduct.textContent = "priceProduct" + " " + "€";
+    // insertion image du produit
 
-// insertion options du produit
+    const imageProduct = document.getElementById("img-product");
+    imageProduct.setAttribute("src", "imageProduct");
+    imageProduct.setAttribute("alt", "nameProduct");
 
-const optionLens = document.getElementById("lenses");
+    // insertion nom du produit
 
-/*for (let i = 0; i < response.length; I++) {
-    const lensesProduct = document.createElement("option");
-    lensesProduct.setAttribute("value", optionProduct[i][i]);
-    optionLens.appendChild(lensesProduct);
-}*/
+    const nameProduct = document.getElementsByClassName("card-title");
+    titleProduct.textContent = "nameProduct";
 
-// insertion donnée du produit au bouton d'ajout au panier
+    // insertion prix du produit
 
-const addCart = document.getElementById("add-to-cart");
-addCart.setAttribute("data-id", "idProduct");
+    const priceProduct = document.getElementById("price");
+    priceProduct.textContent = "priceProduct" + " " + "€";
 
-// insertion titre du produit
+    // insertion options du produit
+
+    const optionLens = document.getElementById("lenses");
+
+    for (let i = 0; i < optionProduct.length; i++) {
+        const lensesProduct = document.createElement("option");
+        lensesProduct.textContent = optionProduct[i];
+        optionLens.appendChild(lensesProduct);
+    };
+
+    // insertion donnée du produit au bouton d'ajout au panier
+
+    const addCart = document.getElementById("add-to-cart");
+    addCart.setAttribute("data-id", "idProduct");
+
+};
