@@ -1,16 +1,14 @@
 
+
 const selectedLens = async () => {
 
     const idLens = location.search.substring(4);
-    console.log(idLens);
 
     let response = await fetch(`http://localhost:3000/api/cameras/${idLens}`);
     if (response.ok) {
         let data = await response.json();
-        console.log(data);
-
+        
         const lensType = document.getElementById("card-lens");
-        console.log(data.name);
         lensType.innerHTML +=
             `<h1 class="text-center text-primary" id="main-title">${data.name}</h1>
         <div class="card mt-4">
@@ -23,9 +21,7 @@ const selectedLens = async () => {
                             <div class="input-group-prepend">
                                 <label class="input-group-text h6" for="lenses">Options de lentilles</label>
                             </div>
-                            <select class="custom-select" id="lenses">
-                                
-                            </select>
+                            <select class="custom-select" id="lenses"></select>
                         </div>
                         <div class="input-group mb-3 col-12 col-sm-3">
                             <div class="input-group-prepend">
@@ -50,7 +46,34 @@ const selectedLens = async () => {
             const optionLens = document.createElement("option");
             optionLens.innerHTML = `${lens}`;
             selectorLens.appendChild(optionLens);
-        })
+        });
     };
 }
 selectedLens();
+
+// // Vérifie la présence d'un panier dans le localStorage sinon en créer un
+
+// if (localStorage.getItem("userCart")) {
+//     console.log("L'utilisateur a un panier existant");
+// } else {
+//     console.log("L'utilisateur ne possède pas de panier celui-cui va être créer");
+//     let cart = [];
+//     localStorage.setItem("userCart", JSON.stringify(cart));
+// }
+
+// // ressources demandés par l'api
+
+// const contact;
+// const product = [];
+
+// // l'utilsateur possède un panier
+
+// const userCart = JSON.parse(localStorage.getItem("userCart"));
+
+// // fonction d'ajout au panier 
+
+// const addCart = () => {
+//     const buttonCart = document.getElementById("add-to-cart");
+//     buttonCart.addEventListener("click",)
+
+// }
