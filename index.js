@@ -1,32 +1,42 @@
-const teddyAppend = document.getElementById("mainPage"); // important pour le l'ID du main !!!
 
+// Récupération des données de l'api pour les lentilles de caméra vintage
 
-async function getTeddies() { // créer une fonstion asinchrone
-    response = await fetch("http://localhost:3000/api/teddies"); // la réponse attent  le retour du serveur
-    data = await response.json() // data est égale à la réponse en json
-    return data; // la réponse du data
-}
-getTeddies().then(function (data) {
-    data.forEach((teddy) => {
-        const { name, _id, colors, price, description, imageUrl } = teddy      // Déclaration de teddy comme objet
-        teddyAppend.innerHTML +=
+const getProduct = async () => {
+    try {
+        let response = await fetch("http://localhost:3000/api/cameras/");
+        if (response.ok) {
+            let data = await response.json();
+            console.log(data);
 
+            const products = document.getElementById("all-products");
+            //console.log(products);
+            const lenses = data;
 
-            `<div class="${name}">
-	                <img src="${imageUrl}" alt="Photo de ${name}" class="teddyPhoto"></img>
-	                <div class="teddyInfo">
-	                <h3 class="teddyName">${name}</h3>
-	                <p id="price">Prix: ${price / 100}€</p>
-	                </div>
-	                <button onclick='location.href="produit.html?id=${_id}"' type="button" id="btnCustom">Personnaliser mon teddy</button>
-	            </div>`;     // Inportant !!! récuperer les ID pour la page d'apres.
+            // génération des composants pour chaque fiche produit
 
+            lenses.forEach(lens => {
+                products.innerHTML +=
+                    `<div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <img src="${lens.imageUrl}" alt="${lens.name}" class="card-img-top">
+                            <div class="card-body">
+                                <h2 class="card-title">${lens.name}</h2>
+                                <p class="price h4">${lens.price / 100}€</p>
+                                <p class="card-text">${lens.description}</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="product.html?id=${lens._id}"" class="btn btn-primary">Voir le produit !</a>
+                            </div>
+                        </div>
+                    </div>`;
+                //console.log(products);    
+            });
+        } else {
+            console.error(`Erreur ${response.status}`);
+        }
+    } catch (e) {
+        console.log(e);
+    };
+};
 
-        //console.log(imageUrl);
-
-
-    });
-
-
-});
-
+getProduct();
