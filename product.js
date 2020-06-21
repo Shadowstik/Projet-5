@@ -7,7 +7,7 @@ const selectedLens = async () => {
     let response = await fetch(`http://localhost:3000/api/cameras/${idLens}`);
     if (response.ok) {
         let data = await response.json();
-        
+
         const lensType = document.getElementById("card-lens");
         lensType.innerHTML +=
             `<h1 class="text-center text-primary" id="main-title">${data.name}</h1>
@@ -41,39 +41,48 @@ const selectedLens = async () => {
                 4.0 étoiles
             </div>
         </div>`
+
+        // ajout des option de lentille
+
         const selectorLens = document.getElementById("lenses");
         data.lenses.forEach(lens => {
             const optionLens = document.createElement("option");
             optionLens.innerHTML = `${lens}`;
             selectorLens.appendChild(optionLens);
         });
+
+        // création du panier de l'utilisateur
+
+        const cartInit = [];
+        const addLens = JSON.parse(localStorage.getItem("userCart"));
+        const product = {
+            idProduct: `${data._id}`,
+            nameProduct: `${data.name}`,
+            imageProduct: `${data.imageUrl}`,
+            priceProduct: `${data.price / 100}`,
+            quantityProduct: `${1}`
+        };
+        // création du bouton panier de l'utilisateur
+        if (localStorage.getItem("userCart") === null) {
+
+            localStorage.setItem("userCart", JSON.stringify(cartInit));
+            console.log(localStorage.getItem("userCart"));
+        } else {
+            const addCart = () => {
+                const btnAddCart = document.getElementById("add-to-cart");
+                btnAddCart.addEventListener("click", () => {
+                    cartInit.push(product);
+                    console.log(cartInit);
+                });
+            };
+            addCart();
+        };
     };
-}
+};
 selectedLens();
+console.log(localStorage.length);
 
-// // Vérifie la présence d'un panier dans le localStorage sinon en créer un
 
-// if (localStorage.getItem("userCart")) {
-//     console.log("L'utilisateur a un panier existant");
-// } else {
-//     console.log("L'utilisateur ne possède pas de panier celui-cui va être créer");
-//     let cart = [];
-//     localStorage.setItem("userCart", JSON.stringify(cart));
-// }
 
-// // ressources demandés par l'api
 
-// const contact;
-// const product = [];
 
-// // l'utilsateur possède un panier
-
-// const userCart = JSON.parse(localStorage.getItem("userCart"));
-
-// // fonction d'ajout au panier 
-
-// const addCart = () => {
-//     const buttonCart = document.getElementById("add-to-cart");
-//     buttonCart.addEventListener("click",)
-
-// }
