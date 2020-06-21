@@ -51,10 +51,22 @@ const selectedLens = async () => {
             selectorLens.appendChild(optionLens);
         });
 
-        // création du panier de l'utilisateur
+        // vérification d'un panier existant
 
-        const cartInit = [];
-        const addLens = JSON.parse(localStorage.getItem("userCart"));
+        if (localStorage.getItem("userCart")) {
+            console.log("Un panier est déjà existant");
+        } else {
+            console.log("Il n'y a pas de panier existant un panier va être créer");
+            let cartInit = [];
+            localStorage.setItem("userCart", JSON.stringify(cartInit));
+        };
+
+        // l'utilisateur possède à présent un panier
+
+        const userCart = JSON.parse(localStorage.getItem("userCart"));
+
+        // données du produit à ajouter au panier
+
         const product = {
             idProduct: `${data._id}`,
             nameProduct: `${data.name}`,
@@ -62,25 +74,65 @@ const selectedLens = async () => {
             priceProduct: `${data.price / 100}`,
             quantityProduct: `${1}`
         };
-        // création du bouton panier de l'utilisateur
-        if (localStorage.getItem("userCart") === null) {
 
-            localStorage.setItem("userCart", JSON.stringify(cartInit));
-            console.log(localStorage.getItem("userCart"));
-        } else {
-            const addCart = () => {
-                const btnAddCart = document.getElementById("add-to-cart");
-                btnAddCart.addEventListener("click", () => {
-                    cartInit.push(product);
-                    console.log(cartInit);
-                });
-            };
-            addCart();
+        // fonction de nombre d'article au panier
+
+        const numberItemCart = () => {
+            let cartCount = document.getElementById("cart-count");
+            cartCount.innerHTML = userCart.length;
+        }
+
+        // fonction d'ajout au panier
+
+        const addToCart = () => {
+            
+            const btnAddCart = document.getElementById("add-to-cart");
+            btnAddCart.addEventListener("click", () => {
+                userCart.push(product);
+                numberItemCart();
+                console.log(userCart);
+                
+            });
+
         };
+        addToCart();
+
+        // // création du panier de l'utilisateur
+
+        // let cartInit = [];
+        // const addLens = JSON.parse(localStorage.getItem("userCart"));
+
+        // // données du produit à ajouter au panier
+
+        // const product = {
+        //     idProduct: `${data._id}`,
+        //     nameProduct: `${data.name}`,
+        //     imageProduct: `${data.imageUrl}`,
+        //     priceProduct: `${data.price / 100}`,
+        //     quantityProduct: `${1}`
+        // };
+
+        // // création du bouton panier de l'utilisateur
+        // if (localStorage.getItem("userCart") === null) {
+
+        //     localStorage.setItem("userCart", JSON.stringify(cartInit));
+        //     console.log(localStorage.getItem("userCart"));
+        // } else {
+        //     const addCart = () => {
+        //         const btnAddCart = document.getElementById("add-to-cart");
+        //         btnAddCart.addEventListener("click", () => {
+        //             cartInit.push(product);
+        //             console.log(cartInit);
+        //         });
+        //     };
+        //     addCart();
+        // };
     };
 };
 selectedLens();
-console.log(localStorage.length);
+
+
+
 
 
 
