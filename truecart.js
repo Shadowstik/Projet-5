@@ -7,10 +7,10 @@ const lensAdded = async () => {
         // récupération des données du panier (localStorage)
 
         const currentCart = JSON.parse(localStorage.getItem("userCart"));
-        console.log(currentCart);
-        
-        if (currentCart.length > 0) {
 
+
+        if (currentCart.length > 0) {
+            console.log(currentCart);
             const cartPlace = document.getElementById("cart");
             cartPlace.innerHTML =
 
@@ -28,10 +28,12 @@ const lensAdded = async () => {
             </thead>
             <tbody id="cart-tablebody"></tbody>
         </table>
-        <p class="subtotal">Sous-total: <span>0</span> €</p>`
+        <div class="row">
+        <p class="col h4 my-0">Total à payer: <span id="sub-total"></span>€</p>
+        <button class=" col btn btn-primary">Vider le panier !</button>
+        </div>`
 
-
-            // pour chaque produit ajouter dans le panier
+            // création d'une ligne pour chaque produit ajouter dans le panier
 
             const addLens = document.getElementById("cart-tablebody");
             currentCart.forEach(product => {
@@ -51,6 +53,18 @@ const lensAdded = async () => {
                      </td>
                 </tr>`
             });
+
+            // fonction pour calculer le prix total des articles dans le panier
+
+            let totalPrice = 0;
+            
+            currentCart.forEach(product => {
+                totalPrice += parseInt(product.priceProduct);
+            });
+
+            const total = document.getElementById("sub-total");
+            total.innerHTML = totalPrice;
+            
         } else {
             console.log("panier vide");
         }
@@ -58,6 +72,7 @@ const lensAdded = async () => {
 
 };
 lensAdded();
+localStorage.clear();
 
 
 

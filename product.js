@@ -32,8 +32,8 @@ const selectedLens = async () => {
                                 aria-describedby="quantity">
                         </div>
                         <div class="mb-3 col-12 col-sm-3">
-                            <div type="button" class="btn btn-primary" id="add-to-cart">Ajouter au panier
-                            </div>
+                            <a type="button" class="btn btn-primary" id="add-to-cart" href="cart.html">Ajouter au panier
+                            </a>
                         </div>
                     </div>
                 <p class="card-text" id="resume">${data.description}</p>
@@ -60,8 +60,6 @@ const selectedLens = async () => {
             priceProduct: `${data.price / 100}`,
             quantityProduct: `${1}`
         };
-
-        console.log(product);
 
         let userCart;
 
@@ -95,6 +93,8 @@ const selectedLens = async () => {
 };
 selectedLens();
 
+
+localStorage.clear();
 
 
 
