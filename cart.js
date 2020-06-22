@@ -105,3 +105,6 @@ const postalCode = document.getElementById("cp");
 postalCode.addEventListener("onchange", function(e) {
 
 });*/
+
+
+<img src="" alt="" width="100"></img>
