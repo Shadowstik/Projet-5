@@ -1,12 +1,17 @@
 
-
 const lensAdded = async () => {
-    let response = await fetch("http://localhost:3000/api/cameras/");
-    if (response.ok) {
-        let data = await response.json();
-        console.log(data);
+    // let response = await fetch("http://localhost:3000/api/cameras/");
+    // if (response.ok) {
+    //     let data = await response.json();
+    //     console.log(data);
 
-        const newProduct = localStorage.getItem("userCart");
+    // récupération des données du panier (localStorage)
+
+    const currentCart = JSON.parse(localStorage.getItem("userCart"));
+    console.log(currentCart);
+
+    // if (currentCart.length > 0) {
+
         const cartPlace = document.getElementById("cart");
         cartPlace.innerHTML =
 
@@ -26,14 +31,17 @@ const lensAdded = async () => {
         </table>
         <p class="subtotal">Sous-total: <span>0</span> €</p>`
 
-        const addLens = document.getElementById("cart-tablebody");
-        addLens.innerHTML +=
-            `<tr>
-        <td>${newProduct.name}</td>
-        <td>${data.price}</td>
-        <td>${data.quantity}</td>
-        </tr>`
-    }
-}
-
-
+        // pour chaque produit ajouter dans le panier
+        // JSON.parse(currentCart).forEach((product) => {
+            // const addLens = document.getElementById("cart-tablebody");
+            // addLens.innerHTML +=
+            //     `<tr>
+            //             <td>${product._id}${product.imageUrl}${product.name}</td>
+            //             <td>${product.price / 100}€</td>
+            //             <td>${product.quantity}</td>
+            //         </tr>`
+        // });
+    // };
+    // };
+};
+lensAdded();
