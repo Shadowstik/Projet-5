@@ -32,8 +32,8 @@ const selectedLens = async () => {
                                 aria-describedby="quantity">
                         </div>
                         <div class="mb-3 col-12 col-sm-3">
-                            <a type="button" class="btn btn-primary" id="add-to-cart" href="cart.html">Ajouter au panier
-                            </a>
+                            <button type="button" class="btn btn-primary" id="add-to-cart">Ajouter au panier
+                            </button>
                         </div>
                     </div>
                 <p class="card-text" id="resume">${data.description}</p>
@@ -77,8 +77,10 @@ const selectedLens = async () => {
             const btnAddCart = document.getElementById("add-to-cart");
             btnAddCart.addEventListener("click", () => {
                 userCart.push(product);
+                userCart.quantityProduct ++;
                 numberItemCart();
                 localStorage.setItem("userCart", JSON.stringify(userCart));
+                
             });
         };
         addToCart();
@@ -94,7 +96,7 @@ const selectedLens = async () => {
 selectedLens();
 
 
-localStorage.clear();
+
 
 
 

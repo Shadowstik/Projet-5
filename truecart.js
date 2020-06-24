@@ -24,6 +24,7 @@ const lensAdded = async () => {
                     <th>Article</th>
                     <th>Prix</th>
                     <th>Quantité</th>
+                    <th>Sous - total</th>
                 </tr>
             </thead>
             <tbody id="cart-tablebody"></tbody>
@@ -39,32 +40,51 @@ const lensAdded = async () => {
             currentCart.forEach(product => {
                 addLens.innerHTML +=
                     `<tr>
-                    <td>
-                        <img src="${product.imageProduct}" alt="${product.nameProduct}" width="100">
-                        </img> ${product.nameProduct}
-                    </td>
-                    <td>${product.priceProduct}€</td>
-                    <td>${product.quantityProduct}</td>
-                    <td class="text-right">
-                        <form action="" method="POST">
-                            <input type="hidden" name="product_id" value="${product.idProduct}">
-                            <button type="submit" class="btn btn-secondary">X</button>
-                        </form>
-                     </td>
-                </tr>`
+                        <td>
+                            <img src="${product.imageProduct}" alt="${product.nameProduct}" width="100">
+                            </img> ${product.nameProduct}
+                        </td>
+                        <td>${product.priceProduct}€</td>
+                        <td>${product.quantityProduct}</td>
+                        <td>${product.priceProduct * product.quantityProduct}€</td>
+                        <td class="text-right">
+                            <button type="button" id="${product.idProduct}" class="btn btn-secondary">X</button>
+                        </td>
+                    </tr>`
             });
 
             // fonction pour calculer le prix total des articles dans le panier
 
             let totalPrice = 0;
-            
+
             currentCart.forEach(product => {
                 totalPrice += parseInt(product.priceProduct);
             });
 
             const total = document.getElementById("sub-total");
             total.innerHTML = totalPrice;
+
+            // fonction pour retirer un produit du panier
+
+            const removeCam = () => {
+                let deleteItem = document.getElementById("product.idProduct");
+                deleteItem.addEventListener("click", () => {
+                    currentCart.splice(product.idProduct, 1);
+                    localStorage.setItem("userCart", JSON.stringify(userCart));
+                });
+            };
+            removeCam();
+
+            // const removeCam = (i) => { 
+
+            //     currentCart.splice(i, 1);
+            //     localStorage.clear();
+            //     localStorage.setItem("userCart", JSON.stringify(userCart));
+                
+            // };
             
+
+
         } else {
             console.log("panier vide");
         }
@@ -72,7 +92,7 @@ const lensAdded = async () => {
 
 };
 lensAdded();
-localStorage.clear();
+
 
 
 
