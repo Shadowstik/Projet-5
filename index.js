@@ -5,11 +5,10 @@ const getProducts = async () => {
         let response = await fetch("http://localhost:3000/api/cameras/");
         if (response.ok) {
             let data = await response.json();
-            console.log(data);
 
             // récupération de l'emplacement des produits dans la page
             const allProducts = document.getElementById("all-products");
-           
+
             const cameras = data;
 
             // génération des composants pour chaque fiche produit
@@ -62,10 +61,11 @@ const getProducts = async () => {
 
                 // création de la composante de lien vers le produit
                 const btnCamLink = document.createElement("a");
-                btnCamLink.setAttribute("href", "product.html?id=${vcam._id}");
+                btnCamLink.setAttribute("href", "product.html?id=" + `${vcam._id}`);
+                btnCamLink.setAttribute("alt", "lien vers" + " " + `${vcam.name}`);
                 btnCamLink.setAttribute("class", "btn btn-primary");
                 btnCamLink.textContent = "Voir le produit !";
-                camCardFooter.appendChild(btnCamLink);  
+                camCardFooter.appendChild(btnCamLink);
             });
         } else {
             console.error(`Erreur ${response.status}`);

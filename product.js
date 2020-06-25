@@ -1,70 +1,50 @@
 
+// Récupération des données du produit selectionné
+const selectedProduct = async () => {
 
-const selectedLens = async () => {
+    const camId = location.search.substring(4);
 
-    const idLens = location.search.substring(4);
-
-    let response = await fetch(`http://localhost:3000/api/cameras/${idLens}`);
+    let response = await fetch(`http://localhost:3000/api/cameras/${camId}`);
     if (response.ok) {
         let data = await response.json();
 
-        const lensType = document.getElementById("card-lens");
-        lensType.innerHTML +=
-            `<h1 class="text-center text-primary" id="main-title">${data.name}</h1>
-        <div class="card mt-4">
-            <img class="card-img-top img-fluid" src="${data.imageUrl}" alt="${data.name}" id="img-product">
-            <div class="card-body">
-                <h2 class="card-title">${data.name}</h2>
-                <p class="h5" id="price">${data.price / 100}€</p>
-                    <div class="row">
-                        <div class="input-group mb-3 col-12 col-sm-6">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text h6" for="lenses">Options de lentilles</label>
-                            </div>
-                            <select class="custom-select" id="lenses"></select>
-                        </div>
-                        <div class="input-group mb-3 col-12 col-sm-3">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text h6" for="quantity">Quantité</label>
-                            </div>
-                            <input type="number" min="1" max="10" value="1" name="product_qty" id="quantity"
-                                class="form-control" placeholder="Quantité" aria-label="Quantité"
-                                aria-describedby="quantity">
-                        </div>
-                        <div class="mb-3 col-12 col-sm-3">
-                            <button type="button" class="btn btn-primary" id="add-to-cart">Ajouter au panier
-                            </button>
-                        </div>
-                    </div>
-                <p class="card-text" id="resume">${data.description}</p>
-                <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-                4.0 étoiles
-            </div>
-        </div>`
+        const vcam = data;
 
-        // ajout des option de lentille
+        // Affichage du nom du produit sous forme de titre
+        const cardName = document.getElementById("main-title");
+        cardName.innerHTML = `${vcam.name}`;
 
-        const selectorLens = document.getElementById("lenses");
-        data.lenses.forEach(lens => {
+        // Affichage de l'image du produit
+        const camImage = document.getElementById("img-product");
+        camImage.setAttribute("src", vcam.imageUrl);
+        camImage.setAttribute("alt", vcam.name);
+        
+        // Affichage du nom du produit
+        const camName = document.getElementById("name");
+        camName.innerHTML = `${vcam.name}`;
+
+        // Affichage du prix du produit
+        const camPrice = document.getElementById("price");
+        camPrice.innerHTML = `${vcam.price / 100}€`;
+
+        // Affichage des options de lentille du produit
+        const camLenses = document.getElementById("lenses");
+        vcam.lenses.forEach(lens => {
             const optionLens = document.createElement("option");
             optionLens.innerHTML = `${lens}`;
-            selectorLens.appendChild(optionLens);
+            camLenses.appendChild(optionLens);
         });
 
-        // données du produit à ajouter au panier
-
-        const product = {
-            idProduct: `${data._id}`,
-            nameProduct: `${data.name}`,
-            imageProduct: `${data.imageUrl}`,
-            priceProduct: `${data.price / 100}`,
-            quantityProduct: `${1}`
-        };
+        // Affichage de la descritption du produit
+        const camDescription = document.getElementById("resume");
+        camDescription.innerHTML = `${data.description}`;
+        
+        
+        //////////////////////  CREATION DU PANIER - LOCALSTORAGE  /////////////////////
 
         let userCart;
 
-        // création d'un panier s'il n'existe pas 
-
+        // création du panier si il est inexistant
         if(localStorage.getItem("userCart") === null) {
             userCart = [];
         } else {
@@ -72,28 +52,26 @@ const selectedLens = async () => {
         }
 
         // fonction d'ajout au panier
-
         const addToCart = () => {
             const btnAddCart = document.getElementById("add-to-cart");
             btnAddCart.addEventListener("click", () => {
-                userCart.push(product);
-                userCart.quantityProduct ++;
-                numberItemCart();
+                userCart.push(vcam);
+                // userCart.quantityProduct ++;
+                // numberItemCart();
                 localStorage.setItem("userCart", JSON.stringify(userCart));
-                
             });
         };
         addToCart();
         
         // fonction de nombre d'article au panier
 
-        const numberItemCart = () => {
-            let cartCount = document.getElementById("cart-count");
-            cartCount.innerHTML = userCart.length;
-        }
+        // const numberItemCart = () => {
+        //     let cartCount = document.getElementById("cart-count");
+        //     cartCount.innerHTML = userCart.length;
+        // }
     };
 };
-selectedLens();
+selectedProduct();
 
 
 
