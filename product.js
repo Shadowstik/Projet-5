@@ -18,7 +18,7 @@ const selectedProduct = async () => {
         const camImage = document.getElementById("img-product");
         camImage.setAttribute("src", vcam.imageUrl);
         camImage.setAttribute("alt", vcam.name);
-        
+
         // Affichage du nom du produit
         const camName = document.getElementById("name");
         camName.innerHTML = `${vcam.name}`;
@@ -38,14 +38,14 @@ const selectedProduct = async () => {
         // Affichage de la descritption du produit
         const camDescription = document.getElementById("resume");
         camDescription.innerHTML = `${data.description}`;
-        
-        
+
+
         //////////////////////  CREATION DU PANIER - LOCALSTORAGE  /////////////////////
 
         let userCart;
 
         // création du panier si il est inexistant
-        if(localStorage.getItem("userCart") === null) {
+        if (localStorage.getItem("userCart") === null) {
             userCart = [];
         } else {
             userCart = JSON.parse(localStorage.getItem("userCart"));
@@ -56,19 +56,19 @@ const selectedProduct = async () => {
             const btnAddCart = document.getElementById("add-to-cart");
             btnAddCart.addEventListener("click", () => {
                 userCart.push(vcam);
-                // userCart.quantityProduct ++;
-                // numberItemCart();
+                
                 localStorage.setItem("userCart", JSON.stringify(userCart));
+                alert("Votre produit à bien été ajouté");
+                location.reload();
             });
         };
         addToCart();
-        
-        // fonction de nombre d'article au panier
 
-        // const numberItemCart = () => {
-        //     let cartCount = document.getElementById("cart-count");
-        //     cartCount.innerHTML = userCart.length;
-        // }
+        // affiche le nombre de produit actuellement dans le panier
+            const numberProductCart = document.getElementById("cart-count");
+            numberProductCart.innerHTML = userCart.length;
+        
+
     };
 };
 selectedProduct();

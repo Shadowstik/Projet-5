@@ -1,17 +1,21 @@
 
-const productAdded = async () => {
-    let response = await fetch("http://localhost:3000/api/cameras/");
-    if (response.ok) {
-        let data = await response.json();
+// const productAdded = async () => {
+//     let response = await fetch("http://localhost:3000/api/cameras/");
+//     if (response.ok) {
+//         let data = await response.json();
 
 
         // récupération des données du panier (localStorage)
 
         const currentCart = JSON.parse(localStorage.getItem("userCart"));
 
+        // affiche le nombre de produit actuellement dans le panier
+        const numberProductCart = document.getElementById("cart-count");
+        numberProductCart.innerHTML = currentCart.length;
+
         // création du panier lorsqu'un produit a été ajouté
-        if (currentCart.length > 0) {
-            
+        if (currentCart.length > 0 || currentCart.length === null) {
+
             // masquage du message d'alerte indiquant que le panier est vide
             const alertEmpty = document.querySelector("p.alert");
             alertEmpty.classList.add("invisible");
@@ -28,7 +32,7 @@ const productAdded = async () => {
             const tableHeadings = document.createElement("thead");
             tableHeadings.setAttribute("class", "thead-light");
             tableCart.appendChild(tableHeadings);
- 
+
             const rowHeadings = document.createElement("tr");
             rowHeadings.setAttribute("class", "text-left h5");
             tableHeadings.appendChild(rowHeadings);
@@ -76,70 +80,76 @@ const productAdded = async () => {
             let totalPrice = 0;
 
             currentCart.forEach(product => {
-                totalPrice += parseInt(product.price/100);
+                totalPrice += parseInt(product.price / 100);
             });
 
             const total = document.getElementById("total-cart");
             total.innerHTML = totalPrice + "€";
 
-            
             // création du bouton de suppression du panier
             const btnEmptyCart = document.createElement("button");
             btnEmptyCart.setAttribute("class", "col-6 btn btn-primary");
             btnEmptyCart.textContent = "Vider le panier !";
+            btnEmptyCart.addEventListener("click", () => {
+                localStorage.clear();
+                location.reload();
+            });
             cartFooter.appendChild(btnEmptyCart);
 
             // création de la ligne du produit du panier pour chaque produit
-            currentCart.forEach(product => {
+            currentCart.forEach((product) => {
 
-            // création de la ligne du produit ajouté au panier
-            const rowProduct = document.createElement("tr");
-            rowProduct.setAttribute("class", "text-left h6");
-            tableBody.appendChild(rowProduct);
+                // création de la ligne du produit ajouté au panier
+                const rowProduct = document.createElement("tr");
+                rowProduct.setAttribute("class", "text-left h6");
+                rowProduct.setAttribute("id", product.id);
+                tableBody.appendChild(rowProduct);
+                console.log(rowProduct);
 
-            const productTitle = document.createElement("td");
-            productTitle.setAttribute("class", "align-middle");
-            rowProduct.appendChild(productTitle);
+                const productTitle = document.createElement("td");
+                productTitle.setAttribute("class", "align-middle");
+                rowProduct.appendChild(productTitle);
 
-            const productImage = document.createElement("img");
-            productImage.setAttribute("src", product.imageUrl);
-            productImage.setAttribute("alt", "name");
-            productImage.setAttribute("width", "100");
-            productTitle.appendChild(productImage);
+                const productImage = document.createElement("img");
+                productImage.setAttribute("src", product.imageUrl);
+                productImage.setAttribute("alt", "name");
+                productImage.setAttribute("width", "100");
+                productTitle.appendChild(productImage);
 
-            const productName = document.createElement("span");
-            productName.setAttribute("class", "align-middle pl-3");
-            productName.innerHTML = product.name;
-            productTitle.appendChild(productName);
+                const productName = document.createElement("span");
+                productName.setAttribute("class", "align-middle pl-3");
+                productName.innerHTML = product.name;
+                productTitle.appendChild(productName);
 
-            const productPrice = document.createElement("td");
-            productPrice.setAttribute("class", "align-middle");
-            productPrice.innerHTML = product.price/100 + "€";
-            rowProduct.appendChild(productPrice);
+                const productPrice = document.createElement("td");
+                productPrice.setAttribute("class", "align-middle");
+                productPrice.innerHTML = product.price / 100 + "€";
+                rowProduct.appendChild(productPrice);
 
-            const productQuantity = document.createElement("td");
-            productQuantity.setAttribute("class", "align-middle");
-            productQuantity.innerHTML = 1;
-            rowProduct.appendChild(productQuantity);
+                const productQuantity = document.createElement("td");
+                productQuantity.setAttribute("class", "align-middle");
+                productQuantity.innerHTML = 1;
+                rowProduct.appendChild(productQuantity);
 
-            const subTotalPrice = document.createElement("td");
-            subTotalPrice.setAttribute("class", "align-middle");
-            subTotalPrice.innerHTML = 1 * product.price/100 + "€";
-            rowProduct.appendChild(subTotalPrice);
+                const subTotalPrice = document.createElement("td");
+                subTotalPrice.setAttribute("class", "align-middle");
+                subTotalPrice.innerHTML = 1 * product.price / 100 + "€";
+                rowProduct.appendChild(subTotalPrice);
 
-            const cellBtnRemove = document.createElement("td");
-            cellBtnRemove.setAttribute("class", "align-middle border-0");
-            rowProduct.appendChild(cellBtnRemove);
+                const cellBtnRemove = document.createElement("td");
+                cellBtnRemove.setAttribute("class", "align-middle border-0");
+                rowProduct.appendChild(cellBtnRemove);
 
-            const btnRemoveProduct = document.createElement("button");
-            btnRemoveProduct.setAttribute("type", "button");
-            btnRemoveProduct.setAttribute("id", "product-id");
-            btnRemoveProduct.setAttribute("class", "btn btn-secondary");
-            btnRemoveProduct.innerHTML = "X";
-            cellBtnRemove.appendChild(btnRemoveProduct);
+                const btnRemoveProduct = document.createElement("button");
+                btnRemoveProduct.setAttribute("type", "button");
+                btnRemoveProduct.setAttribute("id", product._id);
+                btnRemoveProduct.setAttribute("class", "btn btn-secondary");
+                btnRemoveProduct.innerHTML = "X";
+                cellBtnRemove.appendChild(btnRemoveProduct);
+                console.log(btnRemoveProduct);
             });
 
-            
+
             // // fonction pour retirer un produit du panier
 
             // const removeCam = () => {
@@ -156,17 +166,66 @@ const productAdded = async () => {
             //     currentCart.splice(i, 1);
             //     localStorage.clear();
             //     localStorage.setItem("userCart", JSON.stringify(userCart));
-                
+
             // };
+
+            /////////////////////// FORMULAIRE DE VALIDATION ////////////////////////////////////
+
+            let contact; //{prénom, nom, adresse, ville, adresse-électronique};
+            const products = [];
+            const url = "http://localhost:3000/api/cameras/order";
+
+            const confirmOrder = () => {
+                const submitOrder = document.getElementById("validate-cart");
+                submitOrder.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    if (currentCart.length !== null) {
+                        console.log("Envoyer la commande");
+
+                        // si le panier contient des articles le tableau "products" peut être complété
+                        currentCart.forEach((product) => {
+                            products.push();
+                        });
+                    }
+                });
+
+                const firstName = document.getElementById("firstName");
+                firstName.addEventListener("onchange", () => {
+
+                });
+
+                const lastName = document.getElementById("lastName");
+                lastName.addEventListener("onchange", () => {
+
+                });
+
+                const email = document.getElementById("email");
+                email.addEventListener("onchange", () => {
+
+                });
+
+                const address = document.getElementById("address");
+                address.addEventListener("onchange", () => {
+
+                });
+
+                const city = document.getElementById("city");
+                city.addEventListener("onchange", () => {
+
+                });
+
+                const postalCode = document.getElementById("cp");
+                postalCode.addEventListener("onchange", () => {
+                });
+            };
+
         } else {
             console.log("panier vide");
         }
-    };
+//     };
 
-};
-productAdded();
-
-
+// };
+// productAdded();
 
 
 
