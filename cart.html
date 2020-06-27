@@ -60,7 +60,7 @@
         <!-- Formulaire de paiement-->
         <div class="col-md-10 mx-auto">
             <h2 class="mb-3 text-primary h3">Adresse de facturation</h2>
-            <form class="needs-validation my-3" novalidate method="POST" action="/order">
+            <form class="needs-validation my-3" novalidate method="POST" action="/order" id="form">
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="firstName">Prénom</label>
@@ -95,18 +95,11 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6 col-sm-4 mb-3">
+                    <div class="col-6 col-sm-4 col-md-6 mb-3">
                         <label for="city">Ville</label>
                         <input type="text" class="form-control" id="city" placeholder="Entrez une ville">
                         <div class="invalid-feedback">
                             Entrez une ville valide.
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-4 mb-3">
-                        <label for="cp">Code Postal</label>
-                        <input type="text" class="form-control" id="cp" placeholder="-----" required>
-                        <div class="invalid-feedback">
-                            Un code postal est requis.
                         </div>
                     </div>
                 </div>
