@@ -1,110 +1,52 @@
 
-//function addToCart() {
-    const request = new XMLHttpRequest();
-    request.onreadystatechange = function () {
-        if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-            const response = JSON.parse(this.responseText);
+        // initialisation des ressources pour la validation du formulaire
+        const contact = {};
+        const products = [];
+        // vérification des inputs du formulaire via les REGEX
+        validInput = () => {
+            const validNumber = /[0-9]/;
+            const validEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            const validCharacter = /[§!@#$%^&*().?":{}|<>]/;
 
-            // récupération de infos de la première vcam
-            const vcam = response[0];
-            const imageVcam = vcam.imageUrl;
-            const idVcam = vcam._id;
-            const nameVcam = vcam.name;
-            const priceVcam = vcam.price /= 100;
-            const descriptionVcam = vcam.description;
-            const quantityVcam = 1;
+            //récupération des inputs
+            const firstNameForm = document.getElementById("firstName").value;
+            const lastNameForm = document.getElementById("lastName").value;
+            const emailForm = document.getElementById("email").value;
+            const addressForm = document.getElementById("address").value;
+            const cityForm = document.getElementById("city").value;
 
-            // Affichage des résultats
+            //Vérification des champs de saisi du formulaire
+            //Test prénom
+            if (firstNameForm == "" || validNumber.test(firstName) == true || validCharacter.test(firstNameForm) == true) {
+                const feedbackFName = document.getElementById("feedback-firstname");
+                feedbackFName.innerHTML = "Un prénom valide est obligatoire";
+                feedbackFName.classList.add("text-danger");
+            };
 
-            // creation de la ligne panier
-            let rowCart = document.createElement("tr");
-            let cart = document.getElementById("cart-tablebody");
-            cart.appendChild(rowCart);
+            //Test nom
+            if (lastNameForm == "" || validNumber.test(firstNameForm) == true || validCharacter.test(lastNameForm) == true) {
+                const feedbackLName = document.getElementById("feedback-lastname");
+                feedbackLName.innerHTML = "Un nom valide est obligatoire";
+                feedbackLName.classList.add("text-danger");
+            };
 
-            // création de la colonne produit
-            let colProduct = document.createElement("td");
-            colProduct.setAttribute("class", "product");
-            rowCart.appendChild(colProduct);
+            //Test Email
+            if (emailForm == "" || validEmail.test(emailForm) == false) {
+                const feedbackEmail = document.getElementById("feedback-email");
+                feedbackEmail.innerHTML = "Un email valide est obligatoire";
+                feedbackEmail.classList.add("text-danger");
+            };
 
-            // création de la colonne prix
-            let colPrice = document.createElement("td");
-            colPrice.setAttribute("class", "price");
-            rowCart.appendChild(colPrice);
+            //Test Adresse
+            if (addressForm == "" || validCharacter.test(addressForm) == true) {
+                const feedbackAddress = document.getElementById("feedback-address");
+                feedbackAddress.innerHTML = "Une adresse valide est obligatoire";
+                feedbackAddress.classList.add("text-danger");
+            };
 
-            // création de la colonne quantité
-            let colQuantity = document.createElement("td");
-            colQuantity.setAttribute("class", "quantity");
-            rowCart.appendChild(colQuantity);
-
-            // Ajout donnée colonne produit => image
-            /*let imageElt = document.createElement("img");
-            imageElt.src = imageVcam;
-            imageElt.setAttribute("width", "100px"); 
-            colProduct.innerHTML = imageElt;
-            console.log(imageElt);
-            console.log(colProduct);*/
-
-            // Ajout donnée colonne produit => name
-            let nameElt = nameVcam;
-            colProduct.textContent = nameElt;
-
-            // Ajout donnée colonne prix => price
-            let priceElt = priceVcam;
-            colPrice.textContent = priceElt + "€";
-
-            let quantityElt = quantityVcam;
-            colQuantity.textContent = quantityElt;
-
-            // Ajout donnée subtotal
-            let subTotalElt = document.querySelector("p.subtotal span");
-            const subtotal = priceVcam * quantityVcam;
-            subTotalElt.textContent = subtotal;
-
-            // retire le message du panier vide
-            let removeAlert = document.querySelector("p.alert");
-            removeAlert.innerHTML = "";
-            removeAlert.classList.remove("alert");
-        }
-    };
-
-    request.open("GET", "http://localhost:3000/api/cameras");
-    request.send();
-//};
-
-//export {addToCart};
-
-
-// validation formulaire
-
-/*const firstName = document.getElementById("firstName");
-firstName.addEventListener("onchange", function(e) {
-    
-});
-
-const lastName = document.getElementById("lastName");
-lastName.addEventListener("onchange", function(e) {
-
-});
-
-const email = document.getElementById("email");
-email.addEventListener("onchange", function(e) {
-
-});
-
-const address = document.getElementById("address");
-address.addEventListener("onchange", function(e) {
-
-});
-
-const city = document.getElementById("city");
-country.addEventListener("onchange", function(e) {
-
-});
-
-const postalCode = document.getElementById("cp");
-postalCode.addEventListener("onchange", function(e) {
-
-});*/
-
-
-<img src="" alt="" width="100"></img>
+            //Test Ville
+            if (cityForm == "" || validNumber.test(cityForm) == true || validCharacter.test(cityForm) == true) {
+                const feedbackCity = document.getElementById("feedback-city");
+                feedbackCity.innerHTML = "Une ville valide est obligatoire";
+                feedbackCity.classList.add("text-danger");
+            };

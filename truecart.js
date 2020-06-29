@@ -1,8 +1,5 @@
 
 const productAdded = async () => {
-    //     let response = await fetch("http://localhost:3000/api/cameras/");
-    //     if (response.ok) {
-    //         let data = await response.json();
 
     // récupération des données du panier (localStorage)
     let currentCart = JSON.parse(localStorage.getItem("userCart"));
@@ -87,12 +84,7 @@ const productAdded = async () => {
             obj[item] = (obj[item] || 0) + 1;
             return obj;
         }, {});
-
         console.log(occurrences);
-        // console.log(occurrences[]);
-
-        // // création de la ligne du produit du panier pour chaque produit
-        // currentCart.forEach((product) => {
 
         //pour chaque occurence différente d'un produit du panier création d'une ligne produit
         let i = 0;
@@ -112,7 +104,7 @@ const productAdded = async () => {
             tableBody.appendChild(rowProduct);
             console.log(rowProduct);
 
-            
+
             const productTitle = document.createElement("td");
             productTitle.setAttribute("class", "align-middle");
             rowProduct.appendChild(productTitle);
@@ -163,7 +155,7 @@ const productAdded = async () => {
             cellBtnRemove.appendChild(btnRemoveProduct);
             console.log(btnRemoveProduct);
 
-            //récupération de l'évènement pour supprimer un article
+            //récupération de l'élément bouton pour supprimer un article
             document.getElementById("btn-remove" + i).onclick = () => {
                 currentCart.forEach((idProduct) => {
                     arrayIdCart[k] = idProduct._id;
@@ -173,7 +165,6 @@ const productAdded = async () => {
                 console.log(indexId);
                 removeCam(indexId);
             };
-
         };
 
         // affichage du prix total des articles dans le panier
@@ -204,81 +195,110 @@ const productAdded = async () => {
             location.reload();
         };
 
+        // Initialisation du tableau products pour envoie API
+        const products = [];
+
 
 
         /////////////////////// FORMULAIRE DE VALIDATION ////////////////////////////////////
 
-        // vérification des inputs du formulaire via les REGEX
+        // Récupération des input du formulaire
+        const form = document.getElementById("form");
 
-        const inputChecking = () => {
-            const stringCheck = /[a-zA-Z]/;
-            const numberCheck = /[0-9]/;
-            //emailregex.com
-            const mailCheck = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            const specialCharactersCheck = /[§!@#$%^&*().?":{}|<>]/;
+        // Initialisation de l'objet contact pour envoie API
+        const contact = {};
+
+        const firstName = document.getElementById("firstName");
+        firstName.addEventListener("change", function (e) {
+            contact.firstName = this.value;
+        });
+
+        const lastName = document.getElementById("lastName");
+        lastName.addEventListener("change", function (e) {
+            contact.lastName = this.value;
+        });
+
+        const address = document.getElementById("address");
+        address.addEventListener("change", function (e) {
+            contact.address = this.value;
+        });
+
+        const city = document.getElementById("city");
+        city.addEventListener("change", function (e) {
+            contact.city = this.value;
+        });
+
+        const email = document.getElementById("email");
+        email.addEventListener("change", function (e) {
+            contact.email = this.value;
+        });
+
+        // Validation donné saisi
+        const btnValid = document.getElementById("validate-cart");
+        let errorMessage;
+        let errorEmail;
+        const errorText = document.querySelectorAll(".invalid-feedback");
+
+        // Envoie donnés vers API
+        const postData = () => {
+            if (contact && products) {
+                const data = {
+                    contact,
+                    products,
+                };
+
+                const datajson = JSON.stringify(data);
+                const request = new RequeteApi();
+                request.getProduct("", datajson).then((responseText) => {
+                    console.log(responseText);
+                    localStorage.setItem("id", responseText.orderId);
+                    localStorage.setItem("priceCart", priceTotalCart);
+                    document.location.href = "validate.html";
+                    console.log(responseText.orderId);
+                });
+            }
         };
 
-        // fin de la vérification 
-        const messageCheck = " ";
+        // Valider format name
+        const validInput = () => {
+            if (!/^[a-zA-Z ]+$/.test(firstName.value)) {
+                errorText.innerHTML = "Veuillez n'utiliser que des lettres";
+                firstName.focus();
+            } else if (!/^[a-zA-Z ]+$/.test(lastName.value)) {
+                errorText.innerHTML = "Veuillez n'utiliser que des lettres";
+                lastName.focus();
+            } else if (!/^[a-zA-Z ]+$/.test(city.value)) {
+                errorText.innerHTML = "Veuillez n'utiliser que des lettres";
+                city.focus();
+            } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value)) {
+                errorText.innerHTML = "Veuillez entrer une addresse mail valide";
+                email.focus();
+            } else {
+                postData();
+            }
+        };
 
-        const products = [];
-        const url = "http://localhost:3000/api/cameras/order";
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
 
-        const confirmOrder = () => {
-            const submitOrder = document.getElementById("validate-cart");
-            submitOrder.addEventListener("submit", (e) => {
-                e.preventDefault();
-                if (currentCart.length !== null) {
-                    console.log("Envoyer la commande");
-
-                    // si le panier contient des articles le tableau "products" peut être complété
-                    currentCart.forEach((product) => {
-                        products.push();
-                    });
+            // Validation champs remplis 
+            for (let i = 0; i < form.length; i++) {
+                if (!form[i].value) {
+                    errorMessage = "Veuillez renseigner tous les champs";
+                    errorText.innerHTML = errorMessage;
+                    form[i].focus();
+                    e.preventDefault();
+                    break;
+                } else {
+                    validInput();
                 }
-            });
-
-            // récupération des input du formulaire
-            const form = document.forms["form"];
-
-            // initialisation de l'objet contact pour envoie à l'API
-            const contact = {}; //{prénom, nom, adresse, ville, adresse-électronique};
-
-            form["firstName"].addEventListener("change", () => {
-                contact.firstName = this.value;
-            });
-            form["lastName"].addEventListener("input", () => {
-                contact.lastName = this.value;
-            });
-            form["address"].addEventListener("change", () => {
-                contact.address = this.value;
-            });
-            form["city"].addEventListener("change", () => {
-                contact.city = this.value;
-            });
-            form["email"].addEventListener("change", () => {
-                contact.email = this.value;
-            });
-
-            // Validation donné saisi
-            // const btnValidate = document.getElementById("validate-cart");
-            // const inputs = formulaire;
-            // const erreurmessage;
-            // const erreurmessageMail;
-            // const erreurText = document.getElementById("erreur");
-
-            // //récupération des inputs
-            // const firstName = document.getElementById("firstName").value;
-            // const lastName = document.getElementById("lastName").value;
-            // const email = document.getElementById("email").value;
-            // const address = document.getElementById("address").value;
-            // const city = document.getElementById("city").value;
-            // const postalCode = document.getElementById("cp").value;
-        };
+            }
+        });
     } else {
         console.log("panier vide");
-    }
+    };
 };
+
 productAdded();
 
 
