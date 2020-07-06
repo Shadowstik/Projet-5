@@ -60,38 +60,38 @@
         <!-- Formulaire de paiement-->
         <div class="col-md-10 mx-auto">
             <h2 class="mb-3 text-primary h3">Adresse de facturation</h2>
-            <form class="needs-validation my-3" novalidate method="POST" action="" id="form">
+            <form class="needs-validation my-3" method="POST" action="" id="valid-form">
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="firstName">Prénom</label>
                         <input type="text" class="form-control" name="firstName" id="firstName" placeholder="Entrez votre prénom"
                             required>
-                        <small class="invalid-feedback"></small>
+                        <small id="feedback-firstname"></small>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="lastName">Nom</label>
                         <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Entrez votre nom"
                             required>
-                        <small class="invalid-feedback"></small>
+                        <small id="feedback-lastname"></small>
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="email">Email</label>
                     <input type="email" class="form-control" name="email" id="email" placeholder="moi@exemple.com">
-                    <small class="invalid-feedback"></small>
+                    <small id="feedback-email"></small>
                 </div>
 
                 <div class="mb-3">
                     <label for="address">Adresse</label>
                     <input type="text" class="form-control" name="address" id="address"
                         placeholder="Entrez votre adresse" required>
-                    <small class="invalid-feedback"></small>
+                    <small id="feedback-address"></small>
                 </div>
                 <div class="row">
                     <div class="col-6 col-sm-4 col-md-6 mb-3">
                         <label for="city">Ville</label>
                         <input type="text" class="form-control" name="city" id="city" placeholder="Entrez une ville">
-                        <small class="invalid-feedback"></small>
+                        <small id="feedback-city"></small>
                     </div>
                 </div>
                 <hr class="mb-4">
