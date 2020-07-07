@@ -1,10 +1,16 @@
-const orderNumber = localStorage.getItem("id")
-const priceOder = localStorage.getItem("priceCart")
 
-const prix= document.getElementById('prix')
-const id = document.getElementById('id')
+const confirmOrder = () => {
 
-prix.innerHTML = prixCommande + " euros"
-id.innerHTML =  numerosCommande
+// let response = await fetch("http://localhost:3000/api/cameras/order");
+// if (response.ok) {
+//     let data = await response.json();
+//     console.log(data);
 
-localStorage.removeItem('obj')
+const firstname = document.getElementById("firstName");
+
+const orderId = document.getElementById("orderId");
+const totalPrice = document.getElementById("totalPriceCart");
+totalPrice.innerHTML = JSON.parse(localStorage.getItem("priceCart")) + " €";
+}
+// }
+confirmOrder();

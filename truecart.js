@@ -328,27 +328,13 @@ const productAdded = async () => {
         };
         validCity();
 
-        // Envoie donnés vers API
-        const sendData = async (data) => {
-            let response = await fetch("http://localhost:3000/api/cameras/order", {
-                method: "POST",
-                headers: {
-                    "content-type": "application/json"
-                },
-                body: stringify(data)
-            });
-            localStorage.setItem("id", responseText.orderId);
-            localStorage.setItem("priceCart", priceTotalCart);
-            document.location.href = "validate.html";
-            console.log(responseText.orderId);
-        };
-
-
         //écoute de la soumission du formulaire
         form.addEventListener("submit", (e) => {
             e.preventDefault();
             if (validFirstName && validLastName && validMail && validAddress && validCity) {
-                products.push(currentCart);
+                currentCart.forEach((product) => {
+                    products.push(product._id);
+                });
                 contact = {
                     firstName: validFirstName,
                     lastName: validLastName,
@@ -356,40 +342,26 @@ const productAdded = async () => {
                     address: validAddress,
                     city: validCity
                 };
-                if (contact && products) {
-                    let data = {
-                        contact,
-                        products,
-                    };
-                    sendData(data)
-                } else {
-                    console.log("invalid");
-                }
+                const order = {contact, products};
+                fetch("http://localhost:3000/api/cameras/order", {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(order),
+                }).then(response => response.json()).then(response => {
+                    let orderId = response.orderId;
+                    localStorage.setItem("orderId", orderId); // Stocke le numéro de commande renvoyé dans localStorage
+                    localStorage.setItem("order", JSON.stringify(order));
+                    localStorage.setItem("priceCart", totalPrice); // Stocke le prix total dans localStorage
+                    document.location.href = "validate.html"; // Redirection vers la page confirmation
+                }).catch((error) => {
+                    console.error('Erreur de connexion, veuillez réessayer:', error); //Si l'envoie a échoué, la console renvoie une erreur 
+                });
             }
         });
-
-        
-        // const postData = () => {
-        //     if (contact && products) {
-        //         const data = {
-        //             contact,
-        //             products,
-        //         };
-
-        //         const datajson = JSON.stringify(data);
-        //         const request = new RequeteApi();
-        //         request.getProduct("", datajson).then((responseText) => {
-        //             console.log(responseText);
-        //             localStorage.setItem("id", responseText.orderId);
-        //             localStorage.setItem("priceCart", priceTotalCart);
-        //             document.location.href = "validate.html";
-        //             console.log(responseText.orderId);
-        //         });
-        //     }
-        // };
-
-    } else {
-        console.log("panier vide");
+} else {
+    console.log("panier vide");
     };
 };
 
