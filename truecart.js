@@ -195,99 +195,180 @@ const productAdded = async () => {
             location.reload();
         };
 
-        // Initialisation du tableau products pour envoie API
-        const products = [];
-
-
-
         /////////////////////// FORMULAIRE DE VALIDATION ////////////////////////////////////
 
-        // Récupération des input du formulaire
-        const form = document.getElementById("form");
+        // Initialisation des ressources pour l'envoie à l'API
+        const products = [];
+        let contact = {};
 
-        // Initialisation de l'objet contact pour envoie API
-        const contact = {};
+        // Récupération des input du formulaire
+        const form = document.getElementById("validForm");
 
         // vérification des inputs du formulaire via les REGEX
-        // validInput = () => {
         const validNumber = /[0-9]/;
         const validEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         const validCharacter = /[§!@#$%^&*().?":{}|<>]/;
-        
 
         //récupération des inputs
-
         let firstNameForm = document.getElementById("firstName");
         const lastNameForm = document.getElementById("lastName");
-        const emailForm = document.getElementById("email").value;
-        const addressForm = document.getElementById("address").value;
-        const cityForm = document.getElementById("city").value;
+        const emailForm = document.getElementById("email");
+        const addressForm = document.getElementById("address");
+        const cityForm = document.getElementById("city");
 
         //Vérification des champs de saisi du formulaire
+
         //Test prénom
-
-        // const validName = () => {
-
+        const validFirstName = () => {
             firstNameForm.addEventListener("change", () => {
-                if (validCharacter.test(firstNameForm) == true || validNumber.test(firstNameForm) == true) {
+                if (firstNameForm.value == "" || validCharacter.test(firstNameForm.value) == true || validNumber.test(firstNameForm.value) == true) {
                     console.log("ça marche pas");
                     const feedbackFName = document.getElementById("feedback-firstname");
                     feedbackFName.innerHTML = "Un prénom valide est obligatoire";
+                    feedbackFName.classList.remove("text-success");
                     feedbackFName.classList.add("text-danger");
+                    return false;
                 } else {
                     console.log("ça marche");
                     const feedbackFName = document.getElementById("feedback-firstname");
                     feedbackFName.innerHTML = "le prénom est valide";
+                    feedbackFName.classList.remove("text-danger");
                     feedbackFName.classList.add("text-success");
+                    return true;
                 }
             });
-            // lastNameForm.addEventListener("change", function () {
-            //     if (lastNameForm == " ") {
-            //         console.log("ça marche pas");
+        };
+        validFirstName();
 
-            //     } else {
-            //         console.log("ça marche");
+        //Test nom
+        const validLastName = () => {
+            lastNameForm.addEventListener("change", () => {
+                if (lastNameForm.value == "" || validCharacter.test(lastNameForm.value) == true || validNumber.test(lastNameForm.value) == true) {
+                    console.log("ça marche pas");
+                    const feedbackLName = document.getElementById("feedback-lastname");
+                    feedbackLName.innerHTML = "Un nom valide est obligatoire";
+                    feedbackLName.classList.remove("text-success");
+                    feedbackLName.classList.add("text-danger");
+                    return false;
+                } else {
+                    console.log("ça marche");
+                    const feedbackLName = document.getElementById("feedback-lastname");
+                    feedbackLName.innerHTML = "le nom est valide";
+                    feedbackLName.classList.remove("text-danger");
+                    feedbackLName.classList.add("text-success");
+                    return true;
+                }
+            });
+        };
+        validLastName();
 
-            //     }
-            // });
-        // }
-        // validName();
-        // //Test nom
-        // if (lastNameForm == " " || validNumber.test(firstNameForm) == true || validCharacter.test(lastNameForm) == true) {
-        //     const feedbackLName = document.getElementById("feedback-lastname");
-        //     feedbackLName.innerHTML = "Un nom valide est obligatoire";
-        //     feedbackLName.classList.add("text-danger");
-        // };
+        //Test email
+        const validMail = () => {
+            emailForm.addEventListener("change", () => {
+                if (validEmail.test(emailForm.value)) {
+                    console.log("ça marche");
+                    const feedbackEmail = document.getElementById("feedback-email");
+                    feedbackEmail.innerHTML = "l'email est valide";
+                    feedbackEmail.classList.remove("text-danger");
+                    feedbackEmail.classList.add("text-success");
+                    return true;
+                } else {
+                    console.log("ça marche pas");
+                    const feedbackEmail = document.getElementById("feedback-email");
+                    feedbackEmail.innerHTML = "l'email n'est pas valide";
+                    feedbackEmail.classList.remove("text-success");
+                    feedbackEmail.classList.add("text-danger");
+                    return false;
+                }
+            });
+        };
+        validMail();
 
-        // //Test Email
-        // if (emailForm == " " || validEmail.test(emailForm) == false) {
-        //     const feedbackEmail = document.getElementById("feedback-email");
-        //     feedbackEmail.innerHTML = "Un email valide est obligatoire";
-        //     feedbackEmail.classList.add("text-danger");
-        // };
+        //Test adresse
+        const validAddress = () => {
+            addressForm.addEventListener("change", () => {
+                if (addressForm.value == "" || validCharacter.test(addressForm.value) == true) {
+                    console.log("ça marche pas");
+                    const feedbackAddress = document.getElementById("feedback-address");
+                    feedbackAddress.innerHTML = "l'adresse n'est pas valide";
+                    feedbackAddress.classList.remove("text-success");
+                    feedbackAddress.classList.add("text-danger");
+                    return false;
+                } else {
+                    console.log("ça marche");
+                    const feedbackAddress = document.getElementById("feedback-address");
+                    feedbackAddress.innerHTML = "l'adresse est valide";
+                    feedbackAddress.classList.remove("text-danger");
+                    feedbackAddress.classList.add("text-success");
+                    return true;
+                }
+            });
+        };
+        validAddress();
 
-        // //Test Adresse
-        // if (addressForm == " " || validCharacter.test(addressForm) == true) {
-        //     const feedbackAddress = document.getElementById("feedback-address");
-        //     feedbackAddress.innerHTML = "Une adresse valide est obligatoire";
-        //     feedbackAddress.classList.add("text-danger");
-        // };
+        //Test ville
+        const validCity = () => {
+            cityForm.addEventListener("change", () => {
+                if (cityForm.value == "" || validCharacter.test(cityForm.value) == true || validNumber.test(cityForm.value) == true) {
+                    console.log("ça marche pas");
+                    const feedbackCity = document.getElementById("feedback-city");
+                    feedbackCity.innerHTML = "Une ville valide est obligatoire";
+                    feedbackCity.classList.remove("text-success");
+                    feedbackCity.classList.add("text-danger");
+                    return false;
+                } else {
+                    console.log("ça marche");
+                    const feedbackCity = document.getElementById("feedback-city");
+                    feedbackCity.innerHTML = "le prénom est valide";
+                    feedbackCity.classList.remove("text-danger");
+                    feedbackCity.classList.add("text-success");
+                    return true;
+                }
+            });
+        };
+        validCity();
 
-        // //Test Ville
-        // if (cityForm == " " || validNumber.test(cityForm) == true || validCharacter.test(cityForm) == true) {
-        //     const feedbackCity = document.getElementById("feedback-city");
-        //     feedbackCity.innerHTML = "Une ville valide est obligatoire";
-        //     feedbackCity.classList.add("text-danger");
-        // };
-        // }
-        // validInput();
-        // // validation des données saisi
-        // const btnValid = document.getElementById("validate-cart");
-        // let errorMessage;
+        // Envoie donnés vers API
+        const sendData = async (data) => {
+            let response = await fetch("http://localhost:3000/api/cameras/order", {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: stringify(data)
+            });
+            localStorage.setItem("id", responseText.orderId);
+            localStorage.setItem("priceCart", priceTotalCart);
+            document.location.href = "validate.html";
+            console.log(responseText.orderId);
+        };
 
-        // const errorText = document.querySelectorAll(".invalid-feedback");
 
-        // // Envoie donnés vers API
+        //écoute de la soumission du formulaire
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            if (validFirstName && validLastName && validMail && validAddress && validCity) {
+                products.push(currentCart);
+                contact = {
+                    firstName: validFirstName,
+                    lastName: validLastName,
+                    email: validMail,
+                    address: validAddress,
+                    city: validCity
+                };
+                if (contact && products) {
+                    let data = {
+                        contact,
+                        products,
+                    };
+                    sendData(data)
+                } else {
+                    console.log("invalid");
+                }
+            }
+        });
+
+        
         // const postData = () => {
         //     if (contact && products) {
         //         const data = {
@@ -307,42 +388,6 @@ const productAdded = async () => {
         //     }
         // };
 
-        // Valider format name
-        // const validInput = () => {
-        //     if (!/^[a-zA-Z ]+$/.test(firstName.value)) {
-        //         errorText.innerHTML = "Veuillez n'utiliser que des lettres";
-        //         firstName.focus();
-        //         console.log(firstName.value);
-        //     } else if (!/^[a-zA-Z ]+$/.test(lastName.value)) {
-        //         errorText.innerHTML = "Veuillez n'utiliser que des lettres";
-        //         lastName.focus();
-        //     } else if (!/^[a-zA-Z ]+$/.test(city.value)) {
-        //         errorText.innerHTML = "Veuillez n'utiliser que des lettres";
-        //         city.focus();
-        //     } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value)) {
-        //         errorText.innerHTML = "Veuillez entrer une addresse mail valide";
-        //         email.focus();
-        //     } else {
-        //         postData();
-        //     }
-        // };
-
-        // btnValid.addEventListener("submit", (e) => {
-        //     e.preventDefault();
-
-        //     // Validation champs remplis 
-        //     for (let i = 0; i < form.length; i++) {
-        //         if (!form[i].value) {
-        //             errorMessage = "Veuillez renseigner tous les champs";
-        //             errorText.innerHTML = errorMessage;
-        //             form[i].focus();
-        //             e.preventDefault();
-        //             break;
-        //         } else {
-        //             validInput();
-        //         }
-        //     }
-        // });
     } else {
         console.log("panier vide");
     };
