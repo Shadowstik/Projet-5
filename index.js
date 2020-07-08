@@ -1,4 +1,14 @@
 
+// // génération des composants pour chaque fiche produit 
+// const allProducts = document.getElementById("all-products");
+// let newLoaders = document.createElement('div');
+// allProducts.appendChild(newLoaders);
+// newLoaders.setAttribute("class", "spinner-border text-primary");
+// newLoaders.setAttribute("role", "status");
+// const span = document.createElement("span");
+// span.setAttribute("class", "sr-only");
+// newLoaders.appendChild(span);
+
 
 const getProducts = async () => {
     try {
@@ -8,7 +18,6 @@ const getProducts = async () => {
             let data = await response.json();
             const cameras = data;
 
-            // génération des composants pour chaque fiche produit
             const allProducts = document.getElementById("all-products");
 
             cameras.forEach(vcam => {
@@ -44,7 +53,7 @@ const getProducts = async () => {
                 // création de la composante d'affichage prix du produit
                 const camPrice = document.createElement("p");
                 camPrice.setAttribute("class", "price h4");
-                camPrice.innerHTML = `${vcam.price / 100}€`;
+                camPrice.innerHTML = `${vcam.price / 100} €`;
                 camCardBody.appendChild(camPrice);
 
                 // création de la composante d'affichage de la description du produit
