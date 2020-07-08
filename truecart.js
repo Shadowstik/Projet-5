@@ -219,7 +219,7 @@ const productAdded = async () => {
         //Vérification des champs de saisi du formulaire
 
         //Test prénom
-        const validFirstName = () => {
+        // const validFirstName = () => {
             firstNameForm.addEventListener("change", () => {
                 if (firstNameForm.value == "" || validCharacter.test(firstNameForm.value) == true || validNumber.test(firstNameForm.value) == true) {
                     console.log("ça marche pas");
@@ -237,11 +237,11 @@ const productAdded = async () => {
                     return true;
                 }
             });
-        };
-        validFirstName();
+        // };
+        // validFirstName();
 
         //Test nom
-        const validLastName = () => {
+        // const validLastName = () => {
             lastNameForm.addEventListener("change", () => {
                 if (lastNameForm.value == "" || validCharacter.test(lastNameForm.value) == true || validNumber.test(lastNameForm.value) == true) {
                     console.log("ça marche pas");
@@ -259,11 +259,11 @@ const productAdded = async () => {
                     return true;
                 }
             });
-        };
-        validLastName();
+        // };
+        // validLastName();
 
         //Test email
-        const validMail = () => {
+        // const validMail = () => {
             emailForm.addEventListener("change", () => {
                 if (validEmail.test(emailForm.value)) {
                     console.log("ça marche");
@@ -281,11 +281,11 @@ const productAdded = async () => {
                     return false;
                 }
             });
-        };
-        validMail();
+        // };
+        // validMail();
 
         //Test adresse
-        const validAddress = () => {
+        // const validAddress = () => {
             addressForm.addEventListener("change", () => {
                 if (addressForm.value == "" || validCharacter.test(addressForm.value) == true) {
                     console.log("ça marche pas");
@@ -303,11 +303,11 @@ const productAdded = async () => {
                     return true;
                 }
             });
-        };
-        validAddress();
+        // };
+        // validAddress();
 
         //Test ville
-        const validCity = () => {
+        // const validCity = () => {
             cityForm.addEventListener("change", () => {
                 if (cityForm.value == "" || validCharacter.test(cityForm.value) == true || validNumber.test(cityForm.value) == true) {
                     console.log("ça marche pas");
@@ -325,22 +325,22 @@ const productAdded = async () => {
                     return true;
                 }
             });
-        };
-        validCity();
+        // };
+        // validCity();
 
         //écoute de la soumission du formulaire
         form.addEventListener("submit", (e) => {
             e.preventDefault();
-            if (validFirstName && validLastName && validMail && validAddress && validCity) {
+            if (firstNameForm.value && lastNameForm.value && emailForm.value && addressForm.value && cityForm.value) {
                 currentCart.forEach((product) => {
                     products.push(product._id);
                 });
                 contact = {
-                    firstName: validFirstName,
-                    lastName: validLastName,
-                    email: validMail,
-                    address: validAddress,
-                    city: validCity
+                    firstName: firstNameForm.value,
+                    lastName: lastNameForm.value,
+                    email: emailForm.value,
+                    address: addressForm.value,
+                    city: cityForm.value
                 };
                 const order = {contact, products};
                 fetch("http://localhost:3000/api/cameras/order", {
@@ -350,9 +350,8 @@ const productAdded = async () => {
                     },
                     body: JSON.stringify(order),
                 }).then(response => response.json()).then(response => {
-                    let orderId = response.orderId;
-                    localStorage.setItem("orderId", orderId); // Stocke le numéro de commande renvoyé dans localStorage
-                    localStorage.setItem("order", JSON.stringify(order));
+                    let valid = response;
+                    localStorage.setItem("order", JSON.stringify(valid));
                     localStorage.setItem("priceCart", totalPrice); // Stocke le prix total dans localStorage
                     document.location.href = "validate.html"; // Redirection vers la page confirmation
                 }).catch((error) => {
