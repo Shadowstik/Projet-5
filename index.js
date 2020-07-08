@@ -1,17 +1,16 @@
 
-// Récupération des données de l'api pour des caméras vintage
+
 const getProducts = async () => {
     try {
+        // Récupération des données de l'api pour les caméras vintage
         let response = await fetch("http://localhost:3000/api/cameras/");
         if (response.ok) {
             let data = await response.json();
-
-            // récupération de l'emplacement des produits dans la page
-            const allProducts = document.getElementById("all-products");
-
             const cameras = data;
 
             // génération des composants pour chaque fiche produit
+            const allProducts = document.getElementById("all-products");
+
             cameras.forEach(vcam => {
 
                 // création de la section des produits
@@ -31,7 +30,7 @@ const getProducts = async () => {
                 camImage.setAttribute("class", "card-img-top");
                 camCard.appendChild(camImage);
 
-                // création du body de la fiche produit
+                // création du corps de la fiche produit
                 const camCardBody = document.createElement("div");
                 camCardBody.setAttribute("class", "card-body");
                 camCard.appendChild(camCardBody);

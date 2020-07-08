@@ -1,14 +1,11 @@
 
-// Récupération des données du produit selectionné
 const selectedProduct = async () => {
 
+    // Récupération des données du produit selectionné via son id
     const camId = location.search.substring(4);
-
     let response = await fetch(`http://localhost:3000/api/cameras/${camId}`);
     if (response.ok) {
-        let data = await response.json();
-
-        const vcam = data;
+        const vcam = await response.json();
 
         // Affichage du nom du produit sous forme de titre
         const cardName = document.getElementById("main-title");
@@ -25,7 +22,7 @@ const selectedProduct = async () => {
 
         // Affichage du prix du produit
         const camPrice = document.getElementById("price");
-        camPrice.innerHTML = `${vcam.price / 100}€`;
+        camPrice.innerHTML = `${vcam.price / 100} €`;
 
         // Affichage des options de lentille du produit
         const camLenses = document.getElementById("lenses");
@@ -37,7 +34,7 @@ const selectedProduct = async () => {
 
         // Affichage de la descritption du produit
         const camDescription = document.getElementById("resume");
-        camDescription.innerHTML = `${data.description}`;
+        camDescription.innerHTML = `${vcam.description}`;
 
 
         //////////////////////  CREATION DU PANIER - LOCALSTORAGE  /////////////////////
@@ -54,9 +51,9 @@ const selectedProduct = async () => {
         // fonction d'ajout au panier
         const addToCart = () => {
             const btnAddCart = document.getElementById("add-to-cart");
+            // écoute de l'évènement click sur le bouton d'ajout au panier
             btnAddCart.addEventListener("click", () => {
                 userCart.push(vcam);
-                
                 localStorage.setItem("userCart", JSON.stringify(userCart));
                 alert("Votre produit à bien été ajouté");
                 location.reload();
@@ -67,8 +64,6 @@ const selectedProduct = async () => {
         // affiche le nombre de produit actuellement dans le panier
             const numberProductCart = document.getElementById("cart-count");
             numberProductCart.innerHTML = userCart.length;
-        
-
     };
 };
 selectedProduct();
