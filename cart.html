@@ -38,7 +38,6 @@
     <!-- Page Content -->
     <main class="container">
 
-
         <!---------------------- FORMULAIRE DE COMMANDE ----------------------------------->
         <div class="py-5 text-center">
             <h1 class="text-primary">Formulaire de commande</h1>
@@ -59,35 +58,35 @@
             <h2 class="mb-3 text-primary h3">Adresse de facturation</h2>
             <form class="needs-validation my-3" method="POST" id="validForm">
                 <div class="row">
-                    <div class="col-md-6 mb-3">
+                    <div class="col-12 col-md-6 mb-3">
                         <label for="firstName">Prénom</label>
-                        <input type="text" class="form-control" name="firstName" id="firstName" placeholder="Entrez votre prénom"
+                        <input type="text" class="form-control" name="firstName" id="firstName" minlength="2" maxlength="25" placeholder="Entrez votre prénom"
                             required>
                         <small id="feedback-firstname"></small>
                     </div>
-                    <div class="col-md-6 mb-3">
+                    <div class="col-12 col-md-6 mb-3">
                         <label for="lastName">Nom</label>
-                        <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Entrez votre nom"
+                        <input type="text" class="form-control" name="lastName" id="lastName" minlength="2" maxlength="25" placeholder="Entrez votre nom"
                             required>
                         <small id="feedback-lastname"></small>
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="moi@exemple.com" required>
+                    <input type="email" class="form-control" name="email" id="email" placeholder="moi@exemple.com" minlength="7" maxlength="50" required>
                     <small id="feedback-email"></small>
                 </div>
 
                 <div class="mb-3">
                     <label for="address">Adresse</label>
-                    <input type="text" class="form-control" name="address" id="address"
+                    <input type="text" class="form-control" name="address" id="address" minlength="7" maxlength="50"
                         placeholder="Entrez votre adresse" required>
                     <small id="feedback-address"></small>
                 </div>
                 <div class="row">
                     <div class="col-6 col-sm-4 col-md-6 mb-3">
                         <label for="city">Ville</label>
-                        <input type="text" class="form-control" name="city" id="city" placeholder="Entrez une ville" required>
+                        <input type="text" class="form-control" name="city" id="city" minlength="2" maxlength="25" placeholder="Entrez une ville" required>
                         <small id="feedback-city"></small>
                     </div>
                 </div>
