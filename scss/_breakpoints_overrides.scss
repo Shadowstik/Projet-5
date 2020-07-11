@@ -3,3 +3,9 @@
         max-width: 960px;
     }
 }
+
+@media (max-width: 768px) {
+    table, thead, tbody, tr, th, td {
+        display: block;
+    }
+}

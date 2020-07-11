@@ -22,7 +22,7 @@ const productAdded = async () => {
 
             // création de la structure du panier sous forme de tableau 
             const tableCart = document.createElement("table");
-            tableCart.setAttribute("class", "table text-secondary text-center");
+            tableCart.setAttribute("class", "table table-responsive text-secondary text-center");
             cartPlace.appendChild(tableCart);
 
             // création des entêtes du tableau 
@@ -54,21 +54,23 @@ const productAdded = async () => {
             // création du body du tableau
             const tableBody = document.createElement("tbody");
             tableBody.setAttribute("id", "cart-tablebody");
+            tableBody.setAttribute("class", "table-hover");
             tableCart.appendChild(tableBody);
 
             // création du footer du tableau
             const cartFooter = document.createElement("div");
-            cartFooter.setAttribute("class", "row my-4");
-            tableCart.appendChild(cartFooter);
+            cartFooter.setAttribute("class", "row text-center mx-auto px-5");
+            cartPlace.appendChild(cartFooter);
 
             // création de la section "total" du panier
             const totalCart = document.createElement("p");
-            totalCart.setAttribute("class", "col-6 h6 align-middle my-0");
+            totalCart.setAttribute("class", "col-10 col-md-6 mx-auto h5 my-3 p-0 align-middle");
             totalCart.textContent = "TOTAL À PAYER: ";
             cartFooter.appendChild(totalCart);
 
             const totalCartValue = document.createElement("span");
             totalCartValue.setAttribute("id", "total-cart");
+            totalCartValue.setAttribute("class", "text-primary");
             totalCart.appendChild(totalCartValue);
 
             // liste des id des produit présent dans le panier
@@ -97,12 +99,12 @@ const productAdded = async () => {
 
                 // création de la ligne du produit ajouté au panier
                 const rowProduct = document.createElement("tr");
-                rowProduct.setAttribute("class", "text-left h6");
+                rowProduct.setAttribute("class", "text-center h6");
                 rowProduct.setAttribute("id", product._id);
                 tableBody.appendChild(rowProduct);
 
                 const productTitle = document.createElement("td");
-                productTitle.setAttribute("class", "align-middle");
+                productTitle.setAttribute("class", " text-left align-middle");
                 rowProduct.appendChild(productTitle);
 
                 // image du produit
@@ -172,7 +174,7 @@ const productAdded = async () => {
 
             // création du bouton de suppression du panier
             const btnEmptyCart = document.createElement("button");
-            btnEmptyCart.setAttribute("class", "col-6 btn btn-primary");
+            btnEmptyCart.setAttribute("class", "col-8 col-md-6 mx-auto btn btn-primary");
             btnEmptyCart.textContent = "Vider le panier !";
             btnEmptyCart.addEventListener("click", () => {
                 localStorage.clear();

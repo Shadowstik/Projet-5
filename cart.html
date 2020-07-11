@@ -40,31 +40,33 @@
 
         <!---------------------- FORMULAIRE DE COMMANDE ----------------------------------->
         <div class="py-5 text-center">
-            <h1 class="text-primary">Formulaire de commande</h1>
+            <h1 class="text-primary h2">Formulaire de commande</h1>
             <p class="lead">Remplissez ce formulaire afin de valider votre commande.</p>
         </div>
 
         <!-- Panier de l'utilisateur -->
-        <div class="col-10 mx-auto my-4" id="cart">
-            <div class="d-flex justify-content-between align-items-center mb-3 h3">
-                <h2 class="text-primary h3">Votre panier</h2>
+        <div class="col-md-10 mx-auto" id="cart">
+            <div class="d-flex justify-content-between align-items-center mb-3 h4">
+                <h2 class="text-primary h4">Votre panier</h2>
                 <span class="badge badge-primary badge-pill" id="cart-count">0</span>
             </div>
+            <hr class="mb-4">
             <p class="alert alert-warning my-4">Votre panier est vide</p>
         </div>
 
         <!-- Formulaire de paiement-->
-        <div class="col-md-10 mx-auto">
-            <h2 class="mb-3 text-primary h3">Adresse de facturation</h2>
+        <div class="col-md-10 mx-lg-auto">
+            <hr class="mb-4">
+            <h2 class="mb-3 text-primary h4">Adresse de facturation</h2>
             <form class="needs-validation my-3" method="POST" id="validForm">
                 <div class="row">
-                    <div class="col-12 col-md-6 mb-3">
+                    <div class="col-md-6 mb-3">
                         <label for="firstName">Prénom</label>
                         <input type="text" class="form-control" name="firstName" id="firstName" minlength="2" maxlength="25" placeholder="Entrez votre prénom"
                             required>
                         <small id="feedback-firstname"></small>
                     </div>
-                    <div class="col-12 col-md-6 mb-3">
+                    <div class="col-md-6 mb-3">
                         <label for="lastName">Nom</label>
                         <input type="text" class="form-control" name="lastName" id="lastName" minlength="2" maxlength="25" placeholder="Entrez votre nom"
                             required>
@@ -84,7 +86,7 @@
                     <small id="feedback-address"></small>
                 </div>
                 <div class="row">
-                    <div class="col-6 col-sm-4 col-md-6 mb-3">
+                    <div class="col-sm-4 col-md-6 mb-3">
                         <label for="city">Ville</label>
                         <input type="text" class="form-control" name="city" id="city" minlength="2" maxlength="25" placeholder="Entrez une ville" required>
                         <small id="feedback-city"></small>
@@ -99,9 +101,8 @@
     </main>
 
     <!-- Footer -->
-    <footer class="py-5 bg-dark bord-f">
+    <footer class="py-5 mt-5 bg-dark bord-f">
         <p class="m-0 text-center">Copyright &copy; Orinoco 2020</p>
-
     </footer>
     <!-- Footer END -->
 
