@@ -2,8 +2,6 @@
 const productAdded = async () => {
 
     try {
-
-
         // récupération des données du panier dans le localStorage
         let currentCart = JSON.parse(localStorage.getItem("userCart"));
 
@@ -22,7 +20,7 @@ const productAdded = async () => {
 
             // création de la structure du panier sous forme de tableau 
             const tableCart = document.createElement("table");
-            tableCart.setAttribute("class", "table table-responsive text-secondary text-center");
+            tableCart.setAttribute("class", "table table-responsive table-hover text-secondary text-center");
             cartPlace.appendChild(tableCart);
 
             // création des entêtes du tableau 
@@ -54,7 +52,6 @@ const productAdded = async () => {
             // création du body du tableau
             const tableBody = document.createElement("tbody");
             tableBody.setAttribute("id", "cart-tablebody");
-            tableBody.setAttribute("class", "table-hover");
             tableCart.appendChild(tableBody);
 
             // création du footer du tableau
@@ -174,7 +171,7 @@ const productAdded = async () => {
 
             // création du bouton de suppression du panier
             const btnEmptyCart = document.createElement("button");
-            btnEmptyCart.setAttribute("class", "col-8 col-md-6 mx-auto btn btn-primary");
+            btnEmptyCart.setAttribute("class", "col-8 col-md-6 mx-auto btn btn-secondary");
             btnEmptyCart.textContent = "Vider le panier !";
             btnEmptyCart.addEventListener("click", () => {
                 localStorage.clear();
@@ -215,14 +212,12 @@ const productAdded = async () => {
             //Test prénom
             firstNameForm.addEventListener("change", () => {
                 if (firstNameForm.value == "" || validCharacter.test(firstNameForm.value) == true || validNumber.test(firstNameForm.value) == true) {
-                    console.log("ça marche pas");
                     const feedbackFName = document.getElementById("feedback-firstname");
                     feedbackFName.innerHTML = "Un prénom valide est obligatoire";
                     feedbackFName.classList.remove("text-success");
                     feedbackFName.classList.add("text-danger");
                     return false;
                 } else {
-                    console.log("ça marche");
                     const feedbackFName = document.getElementById("feedback-firstname");
                     feedbackFName.innerHTML = "le prénom est valide";
                     feedbackFName.classList.remove("text-danger");
@@ -234,14 +229,12 @@ const productAdded = async () => {
             //Test nom
             lastNameForm.addEventListener("change", () => {
                 if (lastNameForm.value == "" || validCharacter.test(lastNameForm.value) == true || validNumber.test(lastNameForm.value) == true) {
-                    console.log("ça marche pas");
                     const feedbackLName = document.getElementById("feedback-lastname");
                     feedbackLName.innerHTML = "Un nom valide est obligatoire";
                     feedbackLName.classList.remove("text-success");
                     feedbackLName.classList.add("text-danger");
                     return false;
                 } else {
-                    console.log("ça marche");
                     const feedbackLName = document.getElementById("feedback-lastname");
                     feedbackLName.innerHTML = "le nom est valide";
                     feedbackLName.classList.remove("text-danger");
@@ -253,14 +246,12 @@ const productAdded = async () => {
             //Test email
             emailForm.addEventListener("change", () => {
                 if (validEmail.test(emailForm.value)) {
-                    console.log("ça marche");
                     const feedbackEmail = document.getElementById("feedback-email");
                     feedbackEmail.innerHTML = "l'email est valide";
                     feedbackEmail.classList.remove("text-danger");
                     feedbackEmail.classList.add("text-success");
                     return true;
                 } else {
-                    console.log("ça marche pas");
                     const feedbackEmail = document.getElementById("feedback-email");
                     feedbackEmail.innerHTML = "l'email n'est pas valide";
                     feedbackEmail.classList.remove("text-success");
@@ -272,14 +263,12 @@ const productAdded = async () => {
             //Test adresse
             addressForm.addEventListener("change", () => {
                 if (addressForm.value == "" || validCharacter.test(addressForm.value) == true) {
-                    console.log("ça marche pas");
                     const feedbackAddress = document.getElementById("feedback-address");
                     feedbackAddress.innerHTML = "l'adresse n'est pas valide";
                     feedbackAddress.classList.remove("text-success");
                     feedbackAddress.classList.add("text-danger");
                     return false;
                 } else {
-                    console.log("ça marche");
                     const feedbackAddress = document.getElementById("feedback-address");
                     feedbackAddress.innerHTML = "l'adresse est valide";
                     feedbackAddress.classList.remove("text-danger");
@@ -291,14 +280,12 @@ const productAdded = async () => {
             //Test ville
             cityForm.addEventListener("change", () => {
                 if (cityForm.value == "" || validCharacter.test(cityForm.value) == true || validNumber.test(cityForm.value) == true) {
-                    console.log("ça marche pas");
                     const feedbackCity = document.getElementById("feedback-city");
                     feedbackCity.innerHTML = "Une ville valide est obligatoire";
                     feedbackCity.classList.remove("text-success");
                     feedbackCity.classList.add("text-danger");
                     return false;
                 } else {
-                    console.log("ça marche");
                     const feedbackCity = document.getElementById("feedback-city");
                     feedbackCity.innerHTML = "le prénom est valide";
                     feedbackCity.classList.remove("text-danger");
@@ -342,6 +329,8 @@ const productAdded = async () => {
                     }).catch((error) => {
                         console.error("Erreur de connexion, veuillez réessayer:", error);
                     });
+                } else {
+                    console.log("Il y a une erreur dans le formulaire");
                 }
             });
         } else {

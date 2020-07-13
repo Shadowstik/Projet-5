@@ -1,15 +1,4 @@
 
-// // génération des composants pour chaque fiche produit 
-// const allProducts = document.getElementById("all-products");
-// let newLoaders = document.createElement('div');
-// allProducts.appendChild(newLoaders);
-// newLoaders.setAttribute("class", "spinner-border text-primary");
-// newLoaders.setAttribute("role", "status");
-// const span = document.createElement("span");
-// span.setAttribute("class", "sr-only");
-// newLoaders.appendChild(span);
-
-
 const getProducts = async () => {
     try {
         // Récupération des données de l'api pour les caméras vintage
