@@ -1,6 +1,5 @@
 
 const selectedProduct = async () => {
-
     try {
         // Récupération des données du produit selectionné via son id
         const camId = location.search.substring(4);

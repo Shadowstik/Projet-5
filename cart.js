@@ -194,6 +194,26 @@ const productAdded = async () => {
             const products = [];
             let contact = {};
 
+            // fonction pour éviter les injections SQL string
+            // const isNumeric = (string) => {
+            //     try {
+            //        parseInt(string);
+            //        return true;
+            //     } catch (error) {
+            //         return false;
+            //     }
+            // };
+
+            // fonction pour éviter les injections SQL number
+            // const isString = (number) => {
+            //     try {
+            //        toString(number);
+            //        return true;
+            //     } catch (error) {
+            //         return false;
+            //     }
+            // };
+
             //récupération des inputs du formulaire
             const form = document.getElementById("validForm");
             const firstNameForm = document.getElementById("firstName");
