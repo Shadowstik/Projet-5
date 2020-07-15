@@ -88,8 +88,9 @@ const productAdded = async () => {
             let i = 0;
 
             for (let [key, quantity] of Object.entries(occurrences)) {
-
-                const response = await fetch("http://localhost:3000/api/cameras/" + key);
+                const uri = "http://localhost:3000/api/cameras/" + key;
+                const encodedRequest = encodeURI(uri);
+                const response = await fetch(encodedRequest);
                 const data = await response.json();
                 const product = data;
                 i++;
@@ -329,7 +330,9 @@ const productAdded = async () => {
                         city: cityForm.value
                     };
                     const order = { contact, products };
-                    fetch("http://localhost:3000/api/cameras/order", {
+                    const uriSend = "http://localhost:3000/api/cameras/order";
+                    const encoded = encodeURI(uriSend);
+                    fetch( encoded, {
                         method: "POST",
                         headers: {
                             "content-type": "application/json"
