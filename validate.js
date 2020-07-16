@@ -1,4 +1,3 @@
-
 // récupération des données du formulaire envoyé
 try {
     const order = JSON.parse(localStorage.getItem("order"));

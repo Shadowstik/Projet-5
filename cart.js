@@ -1,4 +1,3 @@
-
 const productAdded = async () => {
     try {
         // récupération des données du panier dans le localStorage
@@ -13,13 +12,13 @@ const productAdded = async () => {
 
             // masquage du message d'alerte indiquant que le panier est vide
             const alertEmpty = document.querySelector("p.alert");
-            alertEmpty.classList.add("invisible");
+            alertEmpty.classList.add("d-none");
 
             const cartPlace = document.getElementById("cart");
 
             // création de la structure du panier sous forme de tableau 
             const tableCart = document.createElement("table");
-            tableCart.setAttribute("class", "table table-responsive table-hover text-secondary text-center");
+            tableCart.setAttribute("class", "table table-responsive table-hover text-secondary px-5 text-center");
             cartPlace.appendChild(tableCart);
 
             // création des entêtes du tableau 
@@ -55,12 +54,12 @@ const productAdded = async () => {
 
             // création du footer du tableau
             const cartFooter = document.createElement("div");
-            cartFooter.setAttribute("class", "row text-center mx-auto px-5");
+            cartFooter.setAttribute("class", "row text-center mx-auto col-md-9");
             cartPlace.appendChild(cartFooter);
 
             // création de la section "total" du panier
             const totalCart = document.createElement("p");
-            totalCart.setAttribute("class", "col-10 col-md-6 mx-auto h5 my-3 p-0 align-middle");
+            totalCart.setAttribute("class", "col-10 col-md-8 mx-auto h5 my-3 p-0 align-middle");
             totalCart.textContent = "TOTAL À PAYER: ";
             cartFooter.appendChild(totalCart);
 
@@ -137,7 +136,7 @@ const productAdded = async () => {
                 subTotalPrice.innerHTML = quantity * product.price / 100 + " €";
                 rowProduct.appendChild(subTotalPrice);
 
-                // bouton permettant de supprimer un produit
+                // bouton permettant de supprimer 1 unité d'un produit
                 const cellBtnRemove = document.createElement("td");
                 cellBtnRemove.setAttribute("class", "align-middle border-0");
                 rowProduct.appendChild(cellBtnRemove);
@@ -171,7 +170,7 @@ const productAdded = async () => {
 
             // création du bouton de suppression du panier
             const btnEmptyCart = document.createElement("button");
-            btnEmptyCart.setAttribute("class", "col-8 col-md-6 mx-auto btn btn-secondary");
+            btnEmptyCart.setAttribute("class", "col-8 col-md-4 mx-auto btn btn-danger");
             btnEmptyCart.textContent = "Vider le panier !";
             btnEmptyCart.addEventListener("click", () => {
                 localStorage.clear();

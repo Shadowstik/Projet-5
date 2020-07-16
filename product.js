@@ -1,4 +1,3 @@
-
 const selectedProduct = async () => {
     try {
         // Récupération des données du produit selectionné via son id

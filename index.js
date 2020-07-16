@@ -1,8 +1,6 @@
-
 const getProducts = async () => {
     try {
         // Récupération des données de l'api pour les caméras vintage
-
         const uri = "http://localhost:3000/api/cameras/";
         let response = await fetch(uri);
         if (response.ok) {
@@ -64,6 +62,7 @@ const getProducts = async () => {
                 btnCamLink.textContent = "Voir le produit !";
                 camCardFooter.appendChild(btnCamLink);
             });
+
         } else {
             console.error(`Erreur ${response.status}`);
         }
@@ -74,18 +73,4 @@ const getProducts = async () => {
 getProducts();
 
 
-// encodage de l'URL pour qu'il soit illisible
-// const encodeUrl = () => {
-//     let queryString = location.href;
-//     let encoded = encodeURIComponent(queryString);
-//     location.replace(encoded);
-// }
-// encodeUrl();
 
-// décodage de l'URL pour qu'il soit lisible pour la requête
-// const decodeUrl = () => {
-//     let encoded = encodeURI(uri);
-//     let decoded = decodeURI(enc);
-//     return decoded;
-// }
-// decodeUrl();
