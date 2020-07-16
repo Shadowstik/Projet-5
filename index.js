@@ -1,7 +1,7 @@
 const getProducts = async () => {
     try {
         // Récupération des données de l'api pour les caméras vintage
-        const uri = "http://localhost:3000/api/cameras/";
+        let uri = "http://localhost:3000/api/cameras/";
         let response = await fetch(uri);
         if (response.ok) {
             let data = await response.json();
@@ -71,6 +71,8 @@ const getProducts = async () => {
     };
 };
 getProducts();
+
+console.log(encodeURIComponent(document.location.href));
 
 
 
