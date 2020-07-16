@@ -1,6 +1,5 @@
 
 const productAdded = async () => {
-
     try {
         // récupération des données du panier dans le localStorage
         let currentCart = JSON.parse(localStorage.getItem("userCart"));
@@ -195,26 +194,6 @@ const productAdded = async () => {
             const products = [];
             let contact = {};
 
-            // fonction pour éviter les injections SQL string
-            // const isNumeric = (string) => {
-            //     try {
-            //        parseInt(string);
-            //        return true;
-            //     } catch (error) {
-            //         return false;
-            //     }
-            // };
-
-            // fonction pour éviter les injections SQL number
-            // const isString = (number) => {
-            //     try {
-            //        toString(number);
-            //        return true;
-            //     } catch (error) {
-            //         return false;
-            //     }
-            // };
-
             //récupération des inputs du formulaire
             const form = document.getElementById("validForm");
             const firstNameForm = document.getElementById("firstName");
@@ -230,7 +209,7 @@ const productAdded = async () => {
 
             //Vérification des champs de saisi du formulaire
 
-            //Test prénom
+            //vérification de l'input prénom
             firstNameForm.addEventListener("change", () => {
                 if (firstNameForm.value == "" || validCharacter.test(firstNameForm.value) == true || validNumber.test(firstNameForm.value) == true) {
                     const feedbackFName = document.getElementById("feedback-firstname");
@@ -247,7 +226,7 @@ const productAdded = async () => {
                 }
             });
 
-            //Test nom
+            //vérification de l'input nom
             lastNameForm.addEventListener("change", () => {
                 if (lastNameForm.value == "" || validCharacter.test(lastNameForm.value) == true || validNumber.test(lastNameForm.value) == true) {
                     const feedbackLName = document.getElementById("feedback-lastname");
@@ -264,7 +243,7 @@ const productAdded = async () => {
                 }
             });
 
-            //Test email
+            //vérification de l'input email
             emailForm.addEventListener("change", () => {
                 if (validEmail.test(emailForm.value)) {
                     const feedbackEmail = document.getElementById("feedback-email");
@@ -281,7 +260,7 @@ const productAdded = async () => {
                 }
             });
 
-            //Test adresse
+            //vérification de l'input adresse
             addressForm.addEventListener("change", () => {
                 if (addressForm.value == "" || validCharacter.test(addressForm.value) == true) {
                     const feedbackAddress = document.getElementById("feedback-address");
@@ -298,7 +277,7 @@ const productAdded = async () => {
                 }
             });
 
-            //Test ville
+            //vérification de l'input ville
             cityForm.addEventListener("change", () => {
                 if (cityForm.value == "" || validCharacter.test(cityForm.value) == true || validNumber.test(cityForm.value) == true) {
                     const feedbackCity = document.getElementById("feedback-city");
@@ -322,17 +301,18 @@ const productAdded = async () => {
                     currentCart.forEach((product) => {
                         products.push(product._id);
                     });
+                    const textEncoder = new TextEncoder();
                     contact = {
-                        firstName: firstNameForm.value,
-                        lastName: lastNameForm.value,
-                        email: emailForm.value,
-                        address: addressForm.value,
-                        city: cityForm.value
+                        // les inputs sont encodés pour qu'il ne soient pas lisible lors du transfert
+                        firstName: textEncoder.encode(firstNameForm.value),
+                        lastName: textEncoder.encode(lastNameForm.value),
+                        email: textEncoder.encode(emailForm.value),
+                        address: textEncoder.encode(addressForm.value),
+                        city: textEncoder.encode(cityForm.value)
                     };
                     const order = { contact, products };
                     const uriSend = "http://localhost:3000/api/cameras/order";
-                    const encoded = encodeURI(uriSend);
-                    fetch( encoded, {
+                    fetch(uriSend, {
                         method: "POST",
                         headers: {
                             "content-type": "application/json"

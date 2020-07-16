@@ -3,16 +3,12 @@ const getProducts = async () => {
     try {
         // Récupération des données de l'api pour les caméras vintage
 
-        // encodage de l'URL pour qu'il soit illisible
         const uri = "http://localhost:3000/api/cameras/";
-        const encodedRequest = encodeURI(uri);
-        let response = await fetch(encodedRequest);
+        let response = await fetch(uri);
         if (response.ok) {
             let data = await response.json();
             const cameras = data;
-
             const allProducts = document.getElementById("all-products");
-
             cameras.forEach(vcam => {
 
                 // création de la section des produits
@@ -76,3 +72,20 @@ const getProducts = async () => {
     };
 };
 getProducts();
+
+
+// encodage de l'URL pour qu'il soit illisible
+// const encodeUrl = () => {
+//     let queryString = location.href;
+//     let encoded = encodeURIComponent(queryString);
+//     location.replace(encoded);
+// }
+// encodeUrl();
+
+// décodage de l'URL pour qu'il soit lisible pour la requête
+// const decodeUrl = () => {
+//     let encoded = encodeURI(uri);
+//     let decoded = decodeURI(enc);
+//     return decoded;
+// }
+// decodeUrl();

@@ -1,10 +1,9 @@
 
 const selectedProduct = async () => {
     try {
-
         // Récupération des données du produit selectionné via son id
         const camId = location.search.substring(4);
-        
+
         const uri = "http://localhost:3000/api/cameras/" + camId;
         let response = await fetch(uri);
         if (response.ok) {
