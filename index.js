@@ -72,7 +72,6 @@ const getProducts = async () => {
 };
 getProducts();
 
-console.log(encodeURIComponent(document.location.href));
 
 
 
