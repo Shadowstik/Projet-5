@@ -14,12 +14,16 @@ const productAdded = async () => {
             const alertEmpty = document.querySelector("p.alert");
             alertEmpty.classList.add("d-none");
 
+            //emplacement du panier
             const cartPlace = document.getElementById("cart");
+
+            //élément qui rend le panier responsive
+            const tableResponsive = document.getElementById("responsive");
 
             // création de la structure du panier sous forme de tableau 
             const tableCart = document.createElement("table");
-            tableCart.setAttribute("class", "table table-responsive table-hover text-secondary px-5 text-center");
-            cartPlace.appendChild(tableCart);
+            tableCart.setAttribute("class", "table table-hover text-secondary px-5 text-center");
+            tableResponsive.appendChild(tableCart);
 
             // création des entêtes du tableau 
             const tableHeadings = document.createElement("thead");
